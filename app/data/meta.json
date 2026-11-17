@@ -1,0 +1,201 @@
+{
+ "app": "昌衢 Changqu",
+ "version": "1.1.0",
+ "generated_at": "2026-11-14T14:33:52+08:00",
+ "model_version": "traffic-bpr-v1 / signal-webster-v1 / metro-distance-v1 / vrp-savings-2opt-v1 / queue-minute-v1 / city-osm-v1",
+ "sources": [
+  {
+   "id": "osm",
+   "provider": "OpenStreetMap contributors",
+   "url": "https://www.openstreetmap.org/",
+   "endpoint": "https://overpass-api.de/api/interpreter（及 OpenStreetMap France 镜像）",
+   "license": "ODbL 1.0",
+   "fetched_at": "2026-11-14T11:06:12+08:00",
+   "status": "ok",
+   "paths": [
+    "competition/evidence/raw/osm_core.json",
+    "competition/evidence/raw/osm_airport.json",
+    "competition/evidence/raw/osm_metro.json",
+    "competition/evidence/raw/osm_buildings.json",
+    "competition/evidence/raw/osm_buildings_center.json"
+   ],
+   "notes": "真实开放路网/建筑；非实时交通观测"
+  },
+  {
+   "id": "nmc",
+   "provider": "中央气象台（中国气象局）",
+   "url": "https://weather.cma.cn/",
+   "endpoint": "https://weather.cma.cn/api/weather/view?stationid=58606",
+   "license": "官方公开服务",
+   "fetched_at": "2026-11-14T20:11:40+08:00",
+   "status": "ok",
+   "paths": [
+    "competition/evidence/raw/weather.json"
+   ],
+   "notes": "实况/预报/预警；以 lastUpdate 为准"
+  },
+  {
+   "id": "ncmtr",
+   "provider": "南昌轨道交通集团",
+   "url": "https://www.ncmtr.com/yyfw_1.html",
+   "endpoint": "官方线网图与首末时刻表",
+   "license": "官方公开信息",
+   "fetched_at": "2026-11-14T10:52:00+08:00",
+   "status": "ok",
+   "paths": [
+    "competition/evidence/raw/metro/netmap.jpg",
+    "competition/evidence/raw/metro/line1_timetable.jpg",
+    "competition/evidence/raw/metro/line2_timetable.jpg",
+    "competition/evidence/raw/metro/line3_timetable.jpg"
+   ],
+   "notes": "1/2/3 号线站序与逐站首末班为官方；4 号线站序为官方、首末班按线网运营时间；站间运行时间为模型估算"
+  },
+  {
+   "id": "valhalla",
+   "provider": "Valhalla public instance (OSM)",
+   "url": "https://valhalla1.openstreetmap.de/",
+   "endpoint": "https://valhalla1.openstreetmap.de/route",
+   "license": "OSM ODbL / Valhalla MIT",
+   "fetched_at": "2026-11-14T20:11:40+08:00",
+   "status": "ok",
+   "paths": [
+    "competition/evidence/raw/routes"
+   ],
+   "notes": "步行/骑行/驾车真实路径；自由流时间，非实时"
+  },
+  {
+   "id": "tiles_osm",
+   "provider": "OpenStreetMap France tiles",
+   "url": "https://a.tile.openstreetmap.fr/osmfr/",
+   "endpoint": "{z}/{x}/{y}.png",
+   "license": "© OpenStreetMap contributors, ODbL 1.0",
+   "fetched_at": "2026-11-14T14:33:52+08:00",
+   "status": "ok",
+   "paths": [
+    "app/tiles/",
+    "app/data/tiles.json"
+   ],
+   "notes": "标准底图快照 z10–z15；离线缓存，非实时"
+  },
+  {
+   "id": "tiles_esri",
+   "provider": "Esri World Imagery",
+   "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+   "endpoint": "tile/{z}/{y}/{x}",
+   "license": "Esri, Maxar, Earthstar Geographics, GIS User Community",
+   "fetched_at": "2026-11-14T14:33:52+08:00",
+   "status": "ok",
+   "paths": [
+    "app/tiles/sat/",
+    "app/tiles/satellite_z13.jpg"
+   ],
+   "notes": "卫星底图快照 z12–z14，非实时影像；不能用于导航/测绘"
+  },
+  {
+   "id": "hub_city",
+   "provider": "OpenStreetMap contributors · Jiangxi extract",
+   "url": "https://download.openstreetmap.fr/extracts/asia/china/jiangxi-latest.osm.pbf",
+   "endpoint": "app/data/hub-data.js（由 OSM Jiangxi extract 派生）",
+   "license": "ODbL 1.0",
+   "fetched_at": "2026-11-14T14:19:16+08:00",
+   "status": "ok",
+   "paths": [
+    "app/data/hub-data.js",
+    "competition/evidence/screens/teammate-2d.png",
+    "competition/evidence/screens/teammate-3d.png"
+   ],
+   "notes": "道路 31,420 / 建筑 18,000 / 停车场 507 / POI 1,401 / 用地 4,000 / 绿地 1,816 / 水体 1,200 / 轨道 751 / 车站 151 / 出入口 209 / 地点 1,557；2D/3D 共用"
+  },
+  {
+   "id": "rail_official",
+   "provider": "南昌轨道交通集团",
+   "url": "https://www.ncmtr.com/yyfw_1.html",
+   "endpoint": "app/data/rail-official.js（官方首末时刻表核对）",
+   "license": "官方公开信息",
+   "fetched_at": "2026-11-14T11:03:00+08:00",
+   "status": "ok",
+   "paths": [
+    "app/data/rail-official.js"
+   ],
+   "notes": "1/2/3/4 号线逐站首末班；行车间隔取公开运行图值；界面只做计划推算"
+  },
+  {
+   "id": "browser_voice",
+   "provider": "浏览器 Web Speech API",
+   "url": "https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Speech_API",
+   "endpoint": "SpeechRecognition · zh-CN",
+   "license": "浏览器实现",
+   "fetched_at": "运行时",
+   "status": "ok",
+   "paths": [
+    "app/js/voice.js"
+   ],
+   "notes": "语音识别由浏览器提供，可能依赖网络；不保存音频；不支持或拒绝麦克风时保留手动输入"
+  },
+  {
+   "id": "browser_geolocation",
+   "provider": "W3C Geolocation API",
+   "url": "https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation_API",
+   "endpoint": "navigator.geolocation.getCurrentPosition",
+   "license": "浏览器实现",
+   "fetched_at": "运行时",
+   "status": "ok",
+   "paths": [
+    "app/js/locate.js"
+   ],
+   "notes": "位置仅在本机显示并用于最近地点/地铁匹配；不上传到本项目服务器"
+  },
+  {
+   "id": "city3d",
+   "provider": "3D 城市体量（本作品派生）",
+   "url": "https://www.openstreetmap.org/",
+   "endpoint": "OSM building / water / green / landuse ways",
+   "license": "ODbL 1.0；体量为派生",
+   "fetched_at": "2026-11-14T14:19:16+08:00",
+   "status": "ok",
+   "paths": [
+    "app/data/hub-data.js",
+    "app/js/map3d.js"
+   ],
+   "notes": "18,000 栋建筑轮廓、31,420 条道路、水体/绿地/用地；高度按类型/层数示意，不是实测测绘"
+  }
+ ],
+ "unavailable": [
+  {
+   "id": "realtime_traffic",
+   "reason": "无高德/百度等实时路况 API 密钥；不使用网页内部请求",
+   "ui": "模型推演标识"
+  },
+  {
+   "id": "bus_realtime",
+   "reason": "未接入南昌公交实时到站 API",
+   "ui": "未接入"
+  },
+  {
+   "id": "shared_bike",
+   "reason": "未接入共享单车运力/订单",
+   "ui": "未接入"
+  },
+  {
+   "id": "ride_hailing",
+   "reason": "未接入网约车运力/订单",
+   "ui": "未接入"
+  },
+  {
+   "id": "parking",
+   "reason": "未接入实时停车位",
+   "ui": "未接入"
+  },
+  {
+   "id": "realtime_train",
+   "reason": "官方未开放实时列车位置/到站接口",
+   "ui": "计划推算标识"
+  },
+  {
+   "id": "warehouse_orders",
+   "reason": "无企业订单与仓库系统接口授权",
+   "ui": "任务/库存为用户输入"
+  }
+ ],
+ "last_refresh_at": "2026-11-14T20:11:40+08:00"
+}

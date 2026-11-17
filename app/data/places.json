@@ -1,0 +1,95 @@
+{
+ "places": [
+  {
+   "id": "ecjtu",
+   "name": "华东交通大学",
+   "kind": "校园",
+   "lat": 28.7469821,
+   "lon": 115.864259,
+   "source": "OpenStreetMap / Photon",
+   "coverage": "南昌市"
+  },
+  {
+   "id": "shuanggang",
+   "name": "双港地铁站",
+   "kind": "地铁",
+   "lat": 28.7469844,
+   "lon": 115.8561019,
+   "source": "OpenStreetMap",
+   "coverage": "南昌市"
+  },
+  {
+   "id": "bayi",
+   "name": "八一广场",
+   "kind": "地标",
+   "lat": 28.6782334,
+   "lon": 115.8985116,
+   "source": "OpenStreetMap",
+   "coverage": "南昌市"
+  },
+  {
+   "id": "tengwang",
+   "name": "滕王阁",
+   "kind": "地标",
+   "lat": 28.676714,
+   "lon": 115.872898,
+   "source": "OpenStreetMap",
+   "coverage": "南昌市"
+  },
+  {
+   "id": "qiushui",
+   "name": "秋水广场",
+   "kind": "地标",
+   "lat": 28.6845217,
+   "lon": 115.8547729,
+   "source": "OpenStreetMap",
+   "coverage": "南昌市"
+  },
+  {
+   "id": "nanchang_station",
+   "name": "南昌站",
+   "kind": "铁路",
+   "lat": 28.6652855,
+   "lon": 115.9148247,
+   "source": "OpenStreetMap / Photon",
+   "coverage": "南昌市"
+  },
+  {
+   "id": "west_station",
+   "name": "南昌西站",
+   "kind": "铁路",
+   "lat": 28.6266445,
+   "lon": 115.7881925,
+   "source": "OpenStreetMap",
+   "coverage": "南昌市"
+  },
+  {
+   "id": "airport",
+   "name": "昌北机场",
+   "kind": "机场",
+   "lat": 28.8586526,
+   "lon": 115.9133249,
+   "source": "OpenStreetMap",
+   "coverage": "南昌市"
+  },
+  {
+   "id": "metro_tower",
+   "name": "地铁大厦",
+   "kind": "地铁",
+   "lat": 28.68747,
+   "lon": 115.8479266,
+   "source": "OpenStreetMap",
+   "coverage": "南昌市"
+  },
+  {
+   "id": "nanchang_east",
+   "name": "南昌东站",
+   "kind": "铁路",
+   "lat": 28.6171806,
+   "lon": 116.0136594,
+   "source": "OpenStreetMap",
+   "coverage": "南昌市"
+  }
+ ],
+ "generated_at": "2026-11-14T14:33:52+08:00"
+}

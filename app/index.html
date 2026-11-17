@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>昌衢 Changqu · 城市交通与出行决策台</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="昌衢：面向南昌的城市交通与出行决策台。真实路网、官方气象预警、官方地铁时刻与可解释模型。">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-overview" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2.1 4.9-4.9 2.1 2.1-4.9z"/></symbol>
+    <symbol id="i-traffic" viewBox="0 0 24 24"><path d="M3 16.5h4l3-9 4 12 3-7h4"/></symbol>
+    <symbol id="i-travel" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H14a4 4 0 0 0 0-8H9a3.8 3.8 0 0 1 0-7.6h.8"/></symbol>
+    <symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 12v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.2a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .9-1 1.6v.4"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A7.8 7.8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M8 20h8M12 16.5V20"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.8 21 20H3z"/><path d="M12 9v5M12 17h.01"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3.5 6.3v14L9 18l6 2 5.5-2.3v-14L15 6z"/><path d="M9 4v14M15 6v14"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 2.8 20 7v10l-8 4.2L4 17V7z"/><path d="M4 7l8 4.2L20 7M12 11.2v10"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4.5 9A8 8 0 1 1 4 14"/><path d="M4.5 4.5V9H9"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M4 18.5V20h16v-1.5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></symbol>
+    <symbol id="i-walk" viewBox="0 0 24 24"><circle cx="13" cy="4.2" r="1.7"/><path d="M11 21l1.6-5.5-2.8-2.8 1.2-4.3 3 2.2 2.6 1.2"/><path d="M9 12.7 6.8 16 4 17.2M13.6 15.5 16.5 17l1 4"/></symbol>
+    <symbol id="i-bike" viewBox="0 0 24 24"><circle cx="5.5" cy="17" r="3"/><circle cx="18.5" cy="17" r="3"/><path d="M5.5 17l4.2-7h5.1l3.7 7M9.7 10 8 6h3.2M14.8 10l-1.6-4"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><path d="M4 16.5V12l2.2-5h11.6L20 12v4.5"/><path d="M4 12h16M6 16.5h.01M18 16.5h.01"/><path d="M5 16.5v2h3v-2M16 16.5v2h3v-2"/></symbol>
+    <symbol id="i-train" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="14" rx="3"/><path d="M5 11h14M9 3.5v7M15 3.5v7"/><path d="M8 17.5 6 21M16 17.5 18 21M9 14h.01M15 14h.01"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.2 2"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.5-4L4 9"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.5 4L20 15"/><path d="M20 20v-5h-5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13"/><path d="m13 7 5 5-5 5"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-location" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+    <symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="13" rx="3"/><path d="M4 11h16M8 4v7M16 4v7"/><path d="M7 17v2M17 17v2M8 14h.01M16 14h.01"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5h3v14H8zM13 5h3v14h-3z"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6.5h10.5v10H3z"/><path d="M13.5 10h3.8l3.2 3v3.5h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></symbol>
+    <symbol id="i-parking" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3.2"/><path d="M9.4 17V7h3.4a3 3 0 0 1 0 6H9.4"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <header class="topbar">
+    <a class="brand" href="#/traffic" aria-label="昌衢首页">
+      <span class="seal" aria-hidden="true">昌</span>
+      <span class="brand-text"><span class="name">昌衢</span><span class="latin">Changqu · Nanchang</span></span>
+    </a>
+    <div class="topbar-context" aria-hidden="true">
+      <span>南昌 · 昌北</span><span class="dot"></span><span>华东交通大学</span><span class="dot"></span><span>城市交通与出行决策台</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="weather-chip" id="weatherChip" type="button" title="查看官方天气与预警详情">
+        <svg width="15" height="15" aria-hidden="true"><use href="#i-alert"></use></svg>
+        <span class="temp" id="weatherTemp">--°</span>
+        <span id="weatherText">读取天气</span>
+        <span class="sep"></span>
+        <span class="alert" id="weatherAlert">官方预警</span>
+      </button>
+      <button class="theme-switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="切换浅色或深色主题" title="切换浅色 / 深色">
+        <span class="theme-switch-track" aria-hidden="true">
+          <span class="theme-switch-icon sun"><svg><use href="#i-sun"></use></svg></span>
+          <span class="theme-switch-icon moon"><svg><use href="#i-moon"></use></svg></span>
+          <span class="theme-switch-thumb"></span>
+        </span>
+        <span class="theme-switch-text" id="themeSwitchText">浅色</span>
+      </button>
+      <button class="btn quiet" id="helpBtn" type="button" aria-haspopup="dialog" aria-controls="helpDrawer">
+        <svg aria-hidden="true"><use href="#i-help"></use></svg>帮助
+      </button>
+    </div>
+  </header>
+
+  <div class="shell">
+    <nav class="rail" aria-label="主导航">
+      <div>
+        <div class="rail-section-label">题目五个方向</div>
+        <div class="nav">
+          <a class="nav-item active" href="#/traffic" data-page="traffic"><svg aria-hidden="true"><use href="#i-traffic"></use></svg><span>智慧交通</span><span class="nav-index">01</span></a>
+          <a class="nav-item" href="#/travel" data-page="travel"><svg aria-hidden="true"><use href="#i-travel"></use></svg><span>智慧出行</span><span class="nav-index">02</span></a>
+          <a class="nav-item" href="#/logistics" data-page="logistics"><svg aria-hidden="true"><use href="#i-truck"></use></svg><span>智慧物流</span><span class="nav-index">03</span></a>
+          <a class="nav-item" href="#/rail" data-page="rail"><svg aria-hidden="true"><use href="#i-train"></use></svg><span>轨道交通</span><span class="nav-index">04</span></a>
+          <a class="nav-item" href="#/parking" data-page="parking"><svg aria-hidden="true"><use href="#i-parking"></use></svg><span>智慧停车</span><span class="nav-index">05</span></a>
+        </div>
+        <div class="rail-section-label" style="margin-top:14px">依据</div>
+        <div class="nav">
+          <a class="nav-item" href="#/data" data-page="data"><svg aria-hidden="true"><use href="#i-data"></use></svg><span>数据与依据</span><span class="nav-index">06</span></a>
+        </div>
+      </div>
+      <div class="rail-note">
+        <strong>真实数据 · 分开标注</strong><br>
+        官方气象与地铁时刻、OSM 路网、Valhalla 路径为真实来源；路况与配时为可解释模型推演。未接入实时路况。
+      </div>
+    </nav>
+
+    <main class="main" id="main">
+      <!-- ================= 智慧交通 ================= -->
+      <section class="page active" id="page-overview" aria-label="智慧交通总览">
+        <div class="page-head compact-head">
+          <div class="page-head-main">
+            <div class="eyebrow"><span>方向 1 · 智慧交通</span><span class="sep"></span><span>总览 · 走廊压力 · 信号配时</span></div>
+            <h1>智慧交通</h1>
+            <p class="lede">真实路网与官方天气进入同一个可解释模型。先看总览，再拖动时间查看未来 2 小时的走廊压力，或比较真实交叉口的信号配时。</p>
+          </div>
+          <div class="page-head-actions">
+            <span class="badge model"><svg aria-hidden="true"><use href="#i-alert"></use></svg>模型推演 · 非实测路况</span>
+            <span class="badge official"><svg aria-hidden="true"><use href="#i-check"></use></svg>真实路网 / 官方天气</span>
+            <button class="btn voice-command" type="button" data-voice-command="traffic" title="语音指令，例如：晚高峰，未来30分钟，看走廊"><svg aria-hidden="true"><use href="#i-mic"></use></svg>语音指令</button>
+          </div>
+        </div>
+        <div class="subview-bar">
+          <div class="segmented" id="trafficSubviewOverview" role="group" aria-label="智慧交通子视图">
+            <button type="button" data-subview="overview" class="active"><svg aria-hidden="true"><use href="#i-overview"></use></svg>总览</button>
+            <button type="button" data-subview="corridors"><svg aria-hidden="true"><use href="#i-traffic"></use></svg>走廊压力</button>
+            <button type="button" data-subview="signal"><svg aria-hidden="true"><use href="#i-layers"></use></svg>信号配时</button>
+          </div>
+          <div class="subview-hint">三个视图共用同一套真实路网与模型参数</div>
+        </div>
+        <div class="hero">
+          <div>
+            <div class="eyebrow"><span>TRACK 01</span><span class="sep"></span><span>智慧交通与出行</span><span class="sep"></span><span id="heroDate">2026-11-14</span></div>
+            <h1>出门前，<span class="accent">先看见路</span>。</h1>
+            <p>从华东交通大学出发，判断未来 2 小时的走廊压力，比较步行、骑行、驾车、地铁、公交与组合方案；再把视角扩展到南昌西站的物流配送、轨道运行与周边停车。真实数据、官方时刻与可解释模型，共用一套城市地图。</p>
+          </div>
+          <div class="hero-side">
+            <div class="label">数据快照</div>
+            <div id="heroSnapshot">正在读取本地真实数据…</div>
+            <div class="label" style="margin-top:12px">模型版本</div>
+            <div id="heroModel">traffic-bpr-v1 · signal-webster-v1</div>
+          </div>
+        </div>
+
+        <div id="overviewWarning"></div>
+
+        <div class="pulse-grid">
+          <div class="pulse">
+            <div class="pulse-label">当前最压力走廊 <span class="badge model" style="height:18px;font-size:9px">模型</span></div>
+            <div class="pulse-value" id="pulseCorridor">—</div>
+            <div class="pulse-note" id="pulseCorridorNote">读取路段…</div>
+          </div>
+          <div class="pulse">
+            <div class="pulse-label">官方天气与预警 <span class="badge official" style="height:18px;font-size:9px">官方</span></div>
+            <div class="pulse-value" id="pulseWeather">—</div>
+            <div class="pulse-note" id="pulseWeatherNote">读取中央气象台…</div>
+          </div>
+          <div class="pulse">
+            <div class="pulse-label">去八一广场更稳的方式 <span class="badge official" style="height:18px;font-size:9px">真实路径</span></div>
+            <div class="pulse-value" id="pulseTrip">—</div>
+            <div class="pulse-note" id="pulseTripNote">计算中…</div>
+          </div>
+        </div>
+
+        <div class="layout-map overview-layout">
+          <div class="map-panel">
+            <div class="map-canvas" id="overviewMap" role="application" aria-label="南昌城市交通总览地图"></div>
+            <div class="map-overlay-top">
+              <div class="map-tools">
+                <div class="segmented tiny" id="overviewViewToggle" role="group" aria-label="视图选择">
+                  <button type="button" data-view="2d" class="active">2D 地图</button>
+                  <button type="button" data-view="3d">3D 视图</button>
+                </div>
+                <div class="segmented tiny" id="overviewBaseToggle" role="group" aria-label="底图选择">
+                  <button type="button" data-base="map" class="active">标准</button>
+                  <button type="button" data-base="sat">卫星</button>
+                </div>
+                <span class="divider"></span>
+                <button class="btn" type="button" id="overviewReset" title="重置视角"><svg aria-hidden="true"><use href="#i-reset"></use></svg>重置</button>
+                <button class="btn" type="button" data-locate="overview" title="定位我的位置"><svg aria-hidden="true"><use href="#i-location"></use></svg>定位</button>
+              </div>
+              <div class="map-hint">拖动平移 · 滚轮缩放 · 点击路段查看依据</div>
+            </div>
+            <div class="map-legend">
+              <span class="legend-item"><span class="legend-swatch pressure-low"></span>低</span>
+              <span class="legend-item"><span class="legend-swatch pressure-mid"></span>中</span>
+              <span class="legend-item"><span class="legend-swatch pressure-high"></span>高</span>
+              <span class="legend-item"><span class="legend-swatch pressure-severe"></span>严重</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#d7192d"></span>1号线</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#f2b705"></span>2号线</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#008fd0"></span>3号线</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#00a650"></span>4号线</span>
+            </div>
+            <div class="map-foot"><b>模型推演</b> · 基于真实路网/官方天气 · 非实测路况<br>标准 © OpenStreetMap · ODbL / 卫星 Esri, Maxar</div>
+          </div>
+
+          <aside class="inspector" aria-label="今日出行简报">
+            <div class="inspector-head"><h2>今天怎么走</h2><span class="badge model">推演</span></div>
+            <div class="meta-row" id="overviewBriefMeta"><span>基于当前时刻与官方天气</span></div>
+            <div id="overviewBrief">
+              <div class="empty"><strong>正在计算</strong><span>读取路网、天气与路径数据…</span></div>
+            </div>
+            <div id="overviewCorridorChart" class="chart-card compact"></div>
+            <div class="formula" id="overviewFormula">
+              <b>压力</b> = 道路等级基准 × 时段 × 地点吸引 × 天气因子<br>
+              <span class="muted">速度采用 BPR：v = v₀ / (1 + 0.15p²)</span>
+            </div>
+            <div style="display:flex;gap:7px;margin-top:12px;flex-wrap:wrap">
+              <a class="btn primary" href="#/traffic" data-subview-link="corridors"><svg aria-hidden="true"><use href="#i-traffic"></use></svg>看走廊压力</a>
+              <a class="btn" href="#/travel"><svg aria-hidden="true"><use href="#i-travel"></use></svg>规划出行</a>
+            </div>
+          </aside>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div class="section-title">五个方向，一套地图</div>
+            <div class="section-note">方向 1–5 均已接入；每个数字都能追溯到来源、模型或输入假设。</div>
+          </div>
+          <div class="note-grid">
+            <div class="note">
+              <h3>智慧交通 · 路况推演与信号配时</h3>
+              真实 OSM 路网 + 官方气象预警 + BPR 压力模型。看未来 60 分钟哪条走廊压力最高，并在真实交叉口比较固定配时与 Webster 优化。所有模型结果标注“推演”，不冒充实测路况。
+            </div>
+            <div class="note">
+              <h3>智慧出行 · 路径、地铁与最晚出发</h3>
+              Valhalla 真实步行/骑行/驾车路径 + 南昌地铁 1–4 号线官方站序与首末班。输入到达时限，得到每种方式的最晚出发时间与逐步路线；七种方式可按真实轨迹播放 2D/3D 动画。
+            </div>
+            <div class="note">
+              <h3>智慧物流 · 真实路网配送与节约算法</h3>
+              从南昌西站出发，把多条任务按容量、时间窗与库存排成车次。A* 距离矩阵 + Clarke-Wright 节约 + 2-opt，并与“按单直送”基线对照；任务与库存是用户输入，界面标注演练。
+            </div>
+            <div class="note">
+              <h3>轨道交通 · 官方时刻与客流推演</h3>
+              官方 1/2/3/4 号线首末班与运行间隔，推算下一班计划班次；到站高峰用 1 分钟步长排队模型比较加通道/限流前后。全部标注“计划推算”，不是实时列车位置。
+            </div>
+            <div class="note">
+              <h3>智慧停车 · 真实停车场与驾车引导</h3>
+              507 个 OSM 停车场，按半径、容量、类型与名称筛选；选中后沿真实路网生成驾车引导。容量是 OSM 标签，不是实时空位；预约仅为本地意向，不冒充运营方占位。
+            </div>
+            <div class="note">
+              <h3>全项目通用 · 语音输入与当前位置</h3>
+              所有地点输入都带麦克风按钮，浏览器语音识别后模糊匹配地点；定位按钮读取浏览器位置，在地图上标注“我的位置”，出行页可直接设为起点。语音与定位均由浏览器提供，不上传到本项目服务器。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TRAFFIC ================= -->
+      <section class="page" id="page-traffic" aria-label="路况推演">
+        <div class="page-head">
+          <div class="page-head-main">
+            <div class="eyebrow"><span>方向 1 · 智慧交通</span><span class="sep"></span><span>走廊压力 · 信号配时</span></div>
+            <h1>走廊压力与信号配时</h1>
+            <p class="lede">真实路网与官方天气进入同一个可解释模型。拖动时间，看看未来 2 小时的压力如何变化；选中路段，右侧给出“为什么”；也可以切换到信号配时比较真实交叉口。</p>
+          </div>
+          <div class="page-head-actions">
+            <span class="badge model"><svg aria-hidden="true"><use href="#i-alert"></use></svg>模型推演 · 非实测路况</span>
+            <span class="badge official"><svg aria-hidden="true"><use href="#i-check"></use></svg>真实路网 / 官方天气</span>
+            <button class="btn voice-command" type="button" data-voice-command="traffic" title="语音指令，例如：晚高峰，未来30分钟，看走廊"><svg aria-hidden="true"><use href="#i-mic"></use></svg>语音指令</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:12px">
+          <div class="segmented" id="trafficSubview" role="group" aria-label="智慧交通子视图">
+            <button type="button" data-subview="overview"><svg aria-hidden="true"><use href="#i-overview"></use></svg>总览</button>
+            <button type="button" data-subview="corridors" class="active"><svg aria-hidden="true"><use href="#i-traffic"></use></svg>走廊压力</button>
+            <button type="button" data-subview="signal"><svg aria-hidden="true"><use href="#i-layers"></use></svg>信号配时</button>
+          </div>
+        </div>
+
+        <div id="trafficCorridors">
+          <div class="layout-map">
+            <div class="map-panel">
+              <div class="map-canvas" id="trafficMap" role="application" aria-label="走廊压力地图"></div>
+              <div class="map-overlay-top">
+                <div class="map-tools">
+                  <div class="segmented tiny" id="trafficViewToggle" role="group" aria-label="视图选择">
+                    <button type="button" data-view="2d" class="active">2D</button>
+                    <button type="button" data-view="3d">3D</button>
+                  </div>
+                  <div class="segmented tiny" id="trafficBaseToggle" role="group" aria-label="底图选择">
+                    <button type="button" data-base="map" class="active">标准</button>
+                    <button type="button" data-base="sat">卫星</button>
+                  </div>
+                  <span class="divider"></span>
+                  <div class="segmented tiny" id="trafficScenario" role="group" aria-label="情景时刻">
+                    <button type="button" data-scenario="now" class="active">现在</button>
+                    <button type="button" data-scenario="am_peak">早高峰</button>
+                    <button type="button" data-scenario="pm_peak">晚高峰</button>
+                    <button type="button" data-scenario="weekend">周末</button>
+                  </div>
+                  <span class="divider"></span>
+                  <button class="btn" type="button" id="trafficWeather" data-weather="actual" title="切换天气情景">实际天气</button>
+                  <button class="btn" type="button" id="trafficReset" title="重置视角"><svg aria-hidden="true"><use href="#i-reset"></use></svg></button>
+                  <button class="btn" type="button" data-locate="traffic" title="定位我的位置"><svg aria-hidden="true"><use href="#i-location"></use></svg></button>
+                </div>
+                <div class="map-hint" id="trafficTimeHint">现在 · 未来 60 分钟</div>
+              </div>
+              <div style="position:absolute;left:12px;right:12px;bottom:52px;z-index:500;pointer-events:auto">
+                <div style="background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px 11px;box-shadow:var(--shadow)">
+                  <div style="display:flex;justify-content:space-between;gap:12px;font-size:10.5px;color:var(--text-muted);margin-bottom:5px">
+                    <span>时间偏移</span><span id="timeLabel" style="font-variant-numeric:tabular-nums;color:var(--text)">+0 分钟</span>
+                  </div>
+                  <input id="timeSlider" type="range" min="0" max="120" step="5" value="0" aria-label="时间偏移（分钟）" style="width:100%;accent-color:var(--accent)">
+                </div>
+              </div>
+              <div class="map-legend">
+                <span class="legend-item"><span class="legend-swatch pressure-low"></span>低</span>
+                <span class="legend-item"><span class="legend-swatch pressure-mid"></span>中</span>
+                <span class="legend-item"><span class="legend-swatch pressure-high"></span>高</span>
+                <span class="legend-item"><span class="legend-swatch pressure-severe"></span>严重</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#d7192d"></span>1号线</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#f2b705"></span>2号线</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#008fd0"></span>3号线</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#00a650"></span>4号线</span>
+              </div>
+              <div class="map-foot"><b>模型推演</b> · OSM 路网 / 中央气象台 / BPR · 非实测路况<br>标准 © OpenStreetMap · 卫星 Esri</div>
+            </div>
+
+            <aside class="inspector" id="trafficInspector" aria-label="路段详情">
+              <div class="empty"><strong>选择一条路段</strong><span>点击地图上的路段，查看压力、速度与模型依据。</span></div>
+            </aside>
+          </div>
+        </div>
+
+        <div id="trafficSignal" hidden>
+          <div class="layout-map">
+            <div class="map-panel">
+              <div class="map-canvas" id="signalMap" role="application" aria-label="信号交叉口地图"></div>
+              <div class="map-overlay-top">
+                <div class="map-tools">
+                  <div class="segmented tiny" id="signalViewToggle" role="group" aria-label="视图选择">
+                    <button type="button" data-view="2d" class="active">2D</button>
+                    <button type="button" data-view="3d">3D</button>
+                  </div>
+                  <div class="segmented tiny" id="signalBaseToggle" role="group" aria-label="底图选择">
+                    <button type="button" data-base="map" class="active">标准</button>
+                    <button type="button" data-base="sat">卫星</button>
+                  </div>
+                  <span class="divider"></span>
+                  <select id="intersectionSelect" data-voice data-voice-label="交叉口" aria-label="选择交叉口" style="height:29px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--text);padding:0 7px;font-size:11px;max-width:240px"></select>
+                  <button class="btn" type="button" id="signalReset" title="重置视角"><svg aria-hidden="true"><use href="#i-reset"></use></svg></button>
+                  <button class="btn" type="button" data-locate="signal" title="定位我的位置"><svg aria-hidden="true"><use href="#i-location"></use></svg></button>
+                </div>
+                <div class="map-hint">真实交叉口 · 两相位简化 · 离线仿真</div>
+              </div>
+              <div style="position:absolute;left:12px;right:12px;bottom:62px;z-index:500;pointer-events:auto">
+                <div style="background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px 11px;box-shadow:var(--shadow)">
+                  <div style="display:flex;justify-content:space-between;gap:12px;font-size:10.5px;color:var(--text-muted);margin-bottom:5px">
+                    <span>需求倍数</span><span id="demandLabel" style="font-variant-numeric:tabular-nums;color:var(--text)">1.00×</span>
+                  </div>
+                  <input id="demandSlider" type="range" min="0.7" max="1.3" step="0.05" value="1" aria-label="需求倍数" style="width:100%;accent-color:var(--accent)">
+                </div>
+              </div>
+              <div class="map-legend">
+                <span class="legend-item"><span class="legend-dot" style="background:#2f7d5a"></span>低流量进口</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#b67800"></span>中流量</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#c8102e"></span>高流量</span>
+              </div>
+              <div class="map-foot"><b>离线仿真</b> · 真实交叉口 / Webster 模型 · 非真实信号控制<br>底图 © OpenStreetMap / 卫星 Esri</div>
+            </div>
+            <aside class="inspector" id="signalInspector" aria-label="信号配时结果">
+              <div class="empty"><strong>正在计算</strong><span>读取交叉口与流量参数…</span></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TRAVEL ================= -->
+      <section class="page" id="page-travel" aria-label="出行规划">
+        <div class="page-head">
+          <div class="page-head-main">
+            <div class="eyebrow"><span>方向 2 · 智慧出行</span><span class="sep"></span><span>路径 · 换乘 · 最晚出发</span></div>
+            <h1>出行规划</h1>
+            <p class="lede">输入起点、终点和到达时限，比较步行、骑行、驾车、地铁、公交与组合方案。路线来自真实路网；地铁首末班来自南昌轨道交通集团官方时刻表；组合方案可按真实轨迹播放 2D/3D 动画。</p>
+          </div>
+          <div class="page-head-actions">
+            <span class="badge official"><svg aria-hidden="true"><use href="#i-check"></use></svg>真实路径 / 官方地铁</span>
+            <span class="badge muted">公交为 OSM 线路走向 · 未接入实时班次 / 单车 / 网约车</span>
+            <button class="btn voice-command" type="button" data-voice-command="travel" title="语音指令，例如：从华东交通大学到八一广场，六点前到，少走路"><svg aria-hidden="true"><use href="#i-mic"></use></svg>语音助手</button>
+          </div>
+        </div>
+
+        <div class="planner-bar">
+          <div class="field">
+            <label for="originSelect">起点</label>
+            <select id="originSelect" data-voice data-voice-label="起点"></select>
+          </div>
+          <div class="field">
+            <label for="destinationSelect">终点</label>
+            <select id="destinationSelect" data-voice data-voice-label="终点"></select>
+          </div>
+          <div class="field">
+            <label for="deadlineInput">到达时限</label>
+            <input id="deadlineInput" type="time" value="17:30">
+          </div>
+          <div class="field">
+            <label for="preferenceSelect">偏好</label>
+            <select id="preferenceSelect">
+              <option value="balanced">最稳（含缓冲）</option>
+              <option value="fastest">最快</option>
+              <option value="lowwalk">少步行</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:6px">
+            <button class="btn" type="button" id="locateOriginBtn" title="定位并设为起点"><svg aria-hidden="true"><use href="#i-location"></use></svg>定位</button>
+            <button class="btn" type="button" id="swapBtn" title="交换起终点" aria-label="交换起终点"><svg aria-hidden="true"><use href="#i-reset"></use></svg></button>
+            <button class="btn primary" type="button" id="planBtn"><svg aria-hidden="true"><use href="#i-arrow"></use></svg>规划</button>
+          </div>
+        </div>
+
+        <div class="voice-assistant" id="voiceAssistant">
+          <div class="va-head">
+            <div class="va-title"><span class="va-orb" aria-hidden="true"><svg><use href="#i-mic"></use></svg></span><b>语音助手</b><span class="badge model">自然语言</span></div>
+            <div class="va-example">例：<button type="button" data-va-example="明天下午五点半前，从华东交通大学到八一广场，想少走路">“明天下午五点半前，从华东交通大学到八一广场，想少走路”</button></div>
+          </div>
+          <div class="va-body">
+            <button class="va-mic" id="vaMic" type="button" aria-label="开始语音对话" aria-pressed="false">
+              <svg aria-hidden="true"><use href="#i-mic"></use></svg><span>说一句</span>
+            </button>
+            <div class="va-main">
+              <div class="va-transcript" id="vaTranscript">点击“说一句”，像聊天一样说出起点、终点、时间和偏好；我会提取关键地点并填入规划。</div>
+              <div class="va-chips" id="vaChips"></div>
+            </div>
+            <div class="va-input">
+              <input id="vaText" type="text" placeholder="也可以直接输入一句话，例如：从双港到八一广场，六点前到，最快" autocomplete="off">
+              <button class="btn primary" type="button" id="vaSend"><svg aria-hidden="true"><use href="#i-arrow"></use></svg>解析</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="layout-map travel-layout">
+          <div class="map-panel">
+            <div class="map-canvas" id="travelMap" role="application" aria-label="出行路线地图"></div>
+            <div class="map-overlay-top">
+              <div class="map-tools">
+                <div class="segmented tiny" id="travelViewToggle" role="group" aria-label="视图选择">
+                  <button type="button" data-view="2d" class="active">2D</button>
+                  <button type="button" data-view="3d">3D</button>
+                </div>
+                <div class="segmented tiny" id="travelBaseToggle" role="group" aria-label="底图选择">
+                  <button type="button" data-base="map" class="active">标准</button>
+                  <button type="button" data-base="sat">卫星</button>
+                </div>
+                <span class="divider"></span>
+                <div class="segmented tiny" id="travelMapPick" role="group" aria-label="点击地图设置">
+                  <button type="button" data-pick="origin">点图设起点</button>
+                  <button type="button" data-pick="destination" class="active">点图设终点</button>
+                </div>
+                <button class="btn" type="button" id="travelReset" title="重置视角"><svg aria-hidden="true"><use href="#i-reset"></use></svg></button>
+                <button class="btn" type="button" data-locate="travel" title="定位我的位置"><svg aria-hidden="true"><use href="#i-location"></use></svg></button>
+                <button class="btn" type="button" id="travelExpand" title="放大地图 / 恢复侧栏"><svg aria-hidden="true"><use href="#i-expand"></use></svg></button>
+              </div>
+              <div class="map-hint">多方式组合 · 同一组起终点与真实路网</div>
+            </div>
+            <div class="trip-player" id="tripPlayer" hidden>
+              <button class="trip-play" type="button" id="tripPlay" aria-label="播放或暂停"><svg aria-hidden="true"><use href="#i-play"></use></svg></button>
+              <span class="trip-mode-chip" id="tripModeChip">步行</span>
+              <input class="trip-range" id="tripProgress" type="range" min="0" max="1000" value="0" step="1" aria-label="行程进度">
+              <span class="trip-time" id="tripTime">0:00 / 0:00</span>
+              <div class="trip-speeds" id="tripSpeeds" role="group" aria-label="播放速度">
+                <button type="button" data-speed="1" class="active">1×</button>
+                <button type="button" data-speed="2">2×</button>
+                <button type="button" data-speed="4">4×</button>
+              </div>
+              <label class="trip-follow"><input type="checkbox" id="tripFollow" checked>跟随</label>
+              <button class="trip-close" type="button" id="tripClose" aria-label="关闭动画">×</button>
+            </div>
+            <div class="map-legend">
+              <span class="legend-item"><span class="legend-swatch" style="background:#2f7d5a"></span>步行</span>
+              <span class="legend-item"><span class="legend-swatch" style="background:#b67800"></span>骑行</span>
+              <span class="legend-item"><span class="legend-swatch" style="background:#c8102e"></span>驾车</span>
+              <span class="legend-item"><span class="legend-swatch" style="background:#3b6ea8"></span>地铁</span>
+              <span class="legend-item"><span class="legend-swatch" style="background:#7a5ea8"></span>公交</span>
+            </div>
+            <div class="map-foot"><b>真实路径</b> · Valhalla / OSM · 自由流基准时间<br>地铁首末班：南昌轨道交通集团官方 · 底图/卫星：OSM / Esri</div>
+          </div>
+
+          <aside class="inspector" id="travelInspector" aria-label="出行方案">
+            <div class="empty"><strong>选择起终点</strong><span>点击“规划”比较五种方式与组合方案。</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ================= LOGISTICS ================= -->
+      <section class="page" id="page-logistics" aria-label="智慧物流">
+        <div class="page-head">
+          <div class="page-head-main">
+            <div class="eyebrow"><span>方向 3 · 智慧物流</span><span class="sep"></span><span>真实路网 · 节约算法 · 时间窗</span></div>
+            <h1>智慧物流</h1>
+            <p class="lede">从南昌西站枢纽出发，把多条配送任务按容量与时间窗排成车次。路径为 OSM 真实路网 A*，方案用节约算法 + 2-opt；同时给出“按单直送”基线，差距可核对。任务与库存是你的输入，界面不冒充真实订单。</p>
+          </div>
+          <div class="page-head-actions">
+            <span class="badge official"><svg aria-hidden="true"><use href="#i-check"></use></svg>真实路网 / 真实 POI</span>
+            <span class="badge model">节约算法 + 2-opt</span>
+            <button class="btn voice-command" type="button" data-voice-command="logistics" title="语音指令，例如：起点南昌西站，生成方案"><svg aria-hidden="true"><use href="#i-mic"></use></svg>语音指令</button>
+          </div>
+        </div>
+
+        <div class="layout-map hub-layout">
+          <div class="map-panel">
+            <div class="map-canvas" id="logisticsMap" role="application" aria-label="物流配送地图"></div>
+            <div class="map-overlay-top">
+              <div class="map-tools">
+                <div class="segmented tiny" id="logisticsViewToggle" role="group" aria-label="视图选择">
+                  <button type="button" data-view="2d" class="active">2D</button>
+                  <button type="button" data-view="3d">3D</button>
+                </div>
+                <div class="segmented tiny" id="logisticsBaseToggle" role="group" aria-label="底图选择">
+                  <button type="button" data-base="map" class="active">标准</button>
+                  <button type="button" data-base="sat">卫星</button>
+                </div>
+                <span class="divider"></span>
+                <button class="btn" type="button" id="logisticsReset" title="重置视角"><svg aria-hidden="true"><use href="#i-reset"></use></svg></button>
+                <button class="btn" type="button" data-locate="logistics" title="定位我的位置"><svg aria-hidden="true"><use href="#i-location"></use></svg></button>
+                <button class="btn" type="button" id="logisticsExpand" title="放大地图 / 恢复侧栏"><svg aria-hidden="true"><use href="#i-expand"></use></svg></button>
+              </div>
+              <div class="map-hint" id="logisticsHint">任务点来自 OSM 真实 POI · 路线沿真实路网</div>
+            </div>
+            <div class="trip-player" id="logisticsPlayer" hidden>
+              <button class="trip-play" type="button" id="logisticsPlay" aria-label="播放或暂停"><svg aria-hidden="true"><use href="#i-play"></use></svg></button>
+              <span class="trip-mode-chip" id="logisticsModeChip">车辆</span>
+              <input class="trip-range" id="logisticsProgress" type="range" min="0" max="1000" value="0" step="1" aria-label="配送进度">
+              <span class="trip-time" id="logisticsTime">0:00 / 0:00</span>
+              <div class="trip-speeds" id="logisticsSpeeds" role="group" aria-label="播放速度">
+                <button type="button" data-speed="1" class="active">1×</button>
+                <button type="button" data-speed="2">2×</button>
+                <button type="button" data-speed="4">4×</button>
+              </div>
+              <label class="trip-follow"><input type="checkbox" id="logisticsFollow" checked>跟随</label>
+              <button class="trip-close" type="button" id="logisticsClose" aria-label="关闭动画">×</button>
+            </div>
+            <div class="map-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:#0f6b62"></span>配送车 1</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#b25a1f"></span>配送车 2</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#3b5ba5"></span>配送车 3</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#7a4e8c"></span>更多车次</span>
+            </div>
+            <div class="map-foot"><b>真实路网</b> · OSM / A* / 节约算法 · 速度系数为输入假设<br>任务需求、时间窗、库存为用户输入；未接入真实订单系统</div>
+          </div>
+          <aside class="inspector" id="logisticsInspector" aria-label="物流任务与方案">
+            <div class="empty"><strong>正在读取城市数据</strong><span>加载 OSM 路网、建筑与真实 POI…</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ================= RAIL ================= -->
+      <section class="page" id="page-rail" aria-label="轨道交通">
+        <div class="page-head">
+          <div class="page-head-main">
+            <div class="eyebrow"><span>方向 4 · 轨道交通</span><span class="sep"></span><span>官方时刻 · 客流推演 · 安全科普</span></div>
+            <h1>轨道交通</h1>
+            <p class="lede">南昌地铁 1–4 号线的站序、首末班与运行间隔来自官方公开资料。这里推算下一班计划班次、做到站高峰的排队推演，并用乘客守则做安全练习。全部标注“计划推算”，不是实时列车位置。</p>
+          </div>
+          <div class="page-head-actions">
+            <span class="badge official"><svg aria-hidden="true"><use href="#i-check"></use></svg>官方首末班</span>
+            <span class="badge model"><svg aria-hidden="true"><use href="#i-alert"></use></svg>计划推算 · 非实时</span>
+            <button class="btn voice-command" type="button" data-voice-command="rail" title="语音指令，例如：2号线，南昌西站，安全"><svg aria-hidden="true"><use href="#i-mic"></use></svg>语音指令</button>
+          </div>
+        </div>
+
+        <div class="layout-map hub-layout">
+          <div class="map-panel">
+            <div class="map-canvas" id="railMap" role="application" aria-label="轨道交通线网地图"></div>
+            <div class="map-overlay-top">
+              <div class="map-tools">
+                <div class="segmented tiny" id="railViewToggle" role="group" aria-label="视图选择">
+                  <button type="button" data-view="2d" class="active">2D</button>
+                  <button type="button" data-view="3d">3D</button>
+                </div>
+                <div class="segmented tiny" id="railBaseToggle" role="group" aria-label="底图选择">
+                  <button type="button" data-base="map" class="active">标准</button>
+                  <button type="button" data-base="sat">卫星</button>
+                </div>
+                <span class="divider"></span>
+                <button class="btn" type="button" id="railReset" title="重置视角"><svg aria-hidden="true"><use href="#i-reset"></use></svg></button>
+                <button class="btn" type="button" data-locate="rail" title="定位我的位置"><svg aria-hidden="true"><use href="#i-location"></use></svg></button>
+                <button class="btn" type="button" id="railExpand" title="放大地图 / 恢复侧栏"><svg aria-hidden="true"><use href="#i-expand"></use></svg></button>
+              </div>
+              <div class="map-hint">点击地图站点可切换到该站 · 线网为真实站序</div>
+            </div>
+            <div class="map-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:#d7192d"></span>1号线</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#f2b705"></span>2号线</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#008fd0"></span>3号线</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#00a650"></span>4号线</span>
+            </div>
+            <div class="map-foot"><b>官方站序/首末班</b> · 南昌轨道交通集团<br>行车间隔为公开运行图值；站间运行时间估算</div>
+          </div>
+          <aside class="inspector" id="railInspector" aria-label="轨道运行与推演">
+            <div class="empty"><strong>正在读取官方时刻</strong><span>加载 1/2/3/4 号线首末班…</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ================= PARKING ================= -->
+      <section class="page" id="page-parking" aria-label="智慧停车">
+        <div class="page-head">
+          <div class="page-head-main">
+            <div class="eyebrow"><span>方向 5 · 智慧停车</span><span class="sep"></span><span>真实停车场 · 筛选 · 驾车引导</span></div>
+            <h1>智慧停车</h1>
+            <p class="lede">507 个 OSM 真实停车场，可按半径、容量、类型和名称筛选；选中后沿真实路网生成驾车引导。容量是 OSM 标签，不是实时空位；预约是本地意向登记，不冒充运营方占位。</p>
+          </div>
+          <div class="page-head-actions">
+            <span class="badge official"><svg aria-hidden="true"><use href="#i-check"></use></svg>OSM 真实停车场</span>
+            <span class="badge muted">实时余位未接入</span>
+            <button class="btn voice-command" type="button" data-voice-command="parking" title="语音指令，例如：500米，地下停车场"><svg aria-hidden="true"><use href="#i-mic"></use></svg>语音指令</button>
+          </div>
+        </div>
+
+        <div class="layout-map hub-layout">
+          <div class="map-panel">
+            <div class="map-canvas" id="parkingMap" role="application" aria-label="停车场分布地图"></div>
+            <div class="map-overlay-top">
+              <div class="map-tools">
+                <div class="segmented tiny" id="parkingViewToggle" role="group" aria-label="视图选择">
+                  <button type="button" data-view="2d" class="active">2D</button>
+                  <button type="button" data-view="3d">3D</button>
+                </div>
+                <div class="segmented tiny" id="parkingBaseToggle" role="group" aria-label="底图选择">
+                  <button type="button" data-base="map" class="active">标准</button>
+                  <button type="button" data-base="sat">卫星</button>
+                </div>
+                <span class="divider"></span>
+                <button class="btn" type="button" id="parkingReset" title="重置视角"><svg aria-hidden="true"><use href="#i-reset"></use></svg></button>
+                <button class="btn" type="button" data-locate="parking" title="定位我的位置"><svg aria-hidden="true"><use href="#i-location"></use></svg></button>
+                <button class="btn" type="button" id="parkingExpand" title="放大地图 / 恢复侧栏"><svg aria-hidden="true"><use href="#i-expand"></use></svg></button>
+              </div>
+              <div class="map-hint" id="parkingHint">绿色为匹配停车场 · 选中后生成驾车引导</div>
+            </div>
+            <div class="map-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:#0f6b62"></span>停车场</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#c8102e"></span>已选</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#3b6ea8"></span>驾车引导</span>
+            </div>
+            <div class="map-foot"><b>真实停车场</b> · OSM / ODbL<br>容量与收费为 OSM 标签；实时余位/预约未接入</div>
+          </div>
+          <aside class="inspector" id="parkingInspector" aria-label="停车场查询">
+            <div class="empty"><strong>正在读取停车场</strong><span>加载 507 个 OSM 停车场…</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ================= DATA ================= -->
+      <section class="page" id="page-data" aria-label="数据与依据">
+        <div class="page-head">
+          <div class="page-head-main">
+            <div class="eyebrow"><span>数据与依据</span><span class="sep"></span><span>真实 / 模型 / 未接入</span></div>
+            <h1>把依据放在桌面上</h1>
+            <p class="lede">每条结论都能追溯到来源、时间、字段与限制。官方实测、真实缓存、模型推演和未接入数据分开标注，不把推演冒充实测。</p>
+          </div>
+          <div class="page-head-actions">
+            <button class="btn" type="button" id="refreshBtn"><svg aria-hidden="true"><use href="#i-refresh"></use></svg>刷新真实数据</button>
+          </div>
+        </div>
+
+        <div id="refreshStatus" class="note" style="margin-bottom:14px"></div>
+
+        <div class="section" style="margin-top:0">
+          <div class="section-head"><div class="section-title">数据来源</div><div class="section-note">实际请求、实际响应；不含密钥</div></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>来源</th><th>入口</th><th>字段 / 单位</th><th>覆盖</th><th>时间</th><th>状态</th></tr></thead>
+              <tbody id="sourcesTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><div class="section-title">模型与口径</div><div class="section-note">可解释优先于复杂</div></div>
+          <div class="note-grid">
+            <div class="note">
+              <h3>走廊压力与速度</h3>
+              <code>pressure = classBase × timeProfile × attractor × weather</code><br>
+              <code>v = v₀ / (1 + 0.15p²)</code>，最低 5 km/h。区间由需求 ±12% 得到 P10/P50/P90，是情景区间，不是统计置信区间。
+            </div>
+            <div class="note">
+              <h3>信号配时</h3>
+              <code>C₀ = (1.5L + 5) / (1 − Y)</code>，限制 60–120 s；绿信比按各相位关键流量比分配。基线为固定 90 s、两相位均分；延误按 Webster 公式计算。
+            </div>
+            <div class="note">
+              <h3>地铁运行时间</h3>
+              站序与首末班为官方；站间运行时间按站距 / 35 km/h + 每站停站 0.5 分钟估算，界面标注“估算”。换乘步行按 4 分钟计。
+            </div>
+            <div class="note">
+              <h3>路径时间</h3>
+              Valhalla 返回自由流路径时间；驾车在高峰情景下按走廊压力附加延误。地铁/步行时间不受道路拥堵影响，但受天气与步行速度影响。公交组合使用 OSM 线路走向，按 18 km/h + 候车 5 分钟估算，非实时班次。
+            </div>
+            <div class="note">
+              <h3>3D 城市体量</h3>
+              建筑轮廓来自 OSM 全量城市数据：18,000 栋建筑、31,420 条道路、1,200 个水体、1,816 块绿地与 4,000 个用地多边形。只有少量建筑有层数/高度标注，其余按建筑类型/层数生成示意体量；高度是示意，不是实测测绘。卫星底图来自 Esri World Imagery，非实时影像。
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><div class="section-title">明确未接入</div><div class="section-note">不放假按钮，不用合成数据填充</div></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>数据</th><th>未接入原因</th><th>界面处理</th></tr></thead>
+              <tbody id="unavailableTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><div class="section-title">版本与限制</div><div class="section-note" id="metaVersion">—</div></div>
+          <div class="note">
+            <strong>能力边界：</strong>本作品是交通与出行决策原型，不是交通控制系统。路况、信号优化与预测均为基于真实输入的可解释模型输出；实时路况、实时公交班次、共享单车、网约车与停车数据未接入；公交仅使用 OSM 232/1 路线路走向做组合动画，站级时刻与班次为估算。路径时间为自由流基准，未使用实时交通速度。
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="statusbar">
+    <div id="statusLeft">正在读取数据…</div>
+    <div id="statusRight" class="hide-sm">昌衢 v1.1 · 离线可用</div>
+  </footer>
+</div>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="helpDrawer" role="dialog" aria-modal="true" aria-labelledby="helpTitle" aria-hidden="true">
+  <div class="drawer-head">
+    <div><div class="title" id="helpTitle">昌衢使用帮助</div><div class="sub">离线可读 · 与当前版本一致</div></div>
+    <button class="icon-btn" id="helpClose" type="button" aria-label="关闭帮助"><svg aria-hidden="true"><use href="#i-close"></use></svg></button>
+  </div>
+  <div class="drawer-body" id="helpBody">
+    <h3>一分钟开始</h3>
+    <p>左侧工作栏按题目五个方向排列：<b>智慧交通、智慧出行、智慧物流、轨道交通、智慧停车</b>，最后是<b>数据与依据</b>。右上角的太阳/月亮拨片切换浅色与深色主题；所有选择都会保存在本机。</p>
+    <p>每个页面都共用同一套城市地图：鼠标移到路段、地点、地铁站、停车场或配送点上会高亮并显示名称；点击会有扩散动效。地图工具栏可切换 2D/3D、标准/卫星底图，并可定位或重置视角。</p>
+
+    <h3>智慧交通</h3>
+    <p><b>总览：</b>看当前最压力走廊、中央气象台官方天气与预警、去八一广场更稳的方式。右侧“走廊压力排行”图可点击，直接跳到对应路段。</p>
+    <p><b>走廊压力：</b>拖动时间滑杆（未来 0–120 分钟）或切换现在/早高峰/晚高峰/周末，地图颜色会平滑过渡。点击任意路段，右侧显示峰值压力、均速、延误、需求/容量、P10–P90 情景区间和完整公式。点击排行中的走廊也能切换。</p>
+    <p><b>信号配时：</b>选择真实交叉口，调整需求倍数，比较固定 90 秒配时与 Webster 优化后的平均延误和最大排队；图表会随参数重新绘制。</p>
+
+    <h3>智慧出行</h3>
+    <p><b>起终点：</b>下拉框分“常用地点”和“全部地铁站”两组，覆盖南昌地铁 1–4 号线所有站点。也可以点击地图上的地点或地铁站，把它设为起点或终点：先在工具栏选择“点图设起点/点图设终点”。</p>
+    <p><b>九种方式：</b>步行、骑行、驾车、地铁、公交、公交+地铁、骑行+公交、骑行+地铁、驾车+地铁。每种方式给出预计时间、里程、最晚出发时间；点击卡片切换，地图同步高亮对应路线。</p>
+    <p><b>语音助手：</b>不用只念一个地名。点击“说一句”，像聊天一样说完整句子，例如“明天下午五点半前，从华东交通大学到八一广场，想少走路”。助手会提取起点、终点、到达时间与偏好，显示为标签，确认后点击“应用到规划”。也可以在输入框直接打一句话。示例句可点击套用。</p>
+    <p><b>路线播放：</b>选好方式后点击“播放组合动画”，可在 2D/3D 中按真实路径或站序播放，支持 1×/2×/4×、进度拖动和跟随镜头。首末班校验不通过时会明确提示。</p>
+
+    <h3>智慧物流</h3>
+    <p><b>起点与终点：</b>“任务”页顶部可选择配送起点（默认南昌西站，可改为任意常用地点）；每条任务的“目的地”从南昌西站周边真实 OSM POI 中选择。更换起点后原方案失效，需要重新生成。</p>
+    <p><b>任务与车辆：</b>输入需求量、装卸时间、时间窗和库存品类；在“车辆与库存”设置容量、最多站点、速度系数和发车时间。库存不足会阻止生成，不会静默丢单。</p>
+    <p><b>方案：</b>使用真实 OSM 路网 A* 距离矩阵、Clarke-Wright 节约算法 + 2-opt，并与“按单直送”基线对照。右侧图表展示各车次里程与装载，点击条形或“播放”可看车辆沿真实路网行驶。</p>
+
+    <h3>轨道交通</h3>
+    <p><b>运行：</b>选择 1–4 号线、方向、车站和运营日，查看官方首末班、下一班计划班次与后续班次。点击地图站点可直接切换。各线高峰行车间隔图可点击切换线路。</p>
+    <p><b>客流：</b>调整单列到达人数、通道数、服务率、站台容量、行车间隔和限流比例，用 1 分钟步长排队模型比较加通道/限流前后的站台人数与闸机排队。</p>
+    <p><b>安全科普：</b>按《南昌轨道交通乘客守则》整理的 8 条知识卡片，不再做题。点击卡片展开“怎么做”和依据条款；现场仍以工作人员指挥与广播为准。</p>
+
+    <h3>智慧停车</h3>
+    <p>按半径、容量下限、类型和名称筛选 OSM 真实停车场。右侧“停车场距离分布”图展示不同距离档的数量。点击列表或地图上的停车场可选中，随后“生成驾车引导”沿真实路网计算路线；2D/3D 都可查看。</p>
+    <p>容量是 OSM 的 capacity 标签，缺失会写“未标注”，<b>不是实时空位</b>。预约只是本机意向登记，不构成真实占位；官方实时余位与预约请使用“昌通码—昌通智停”。</p>
+
+    <h3>数据与依据</h3>
+    <p>列出每个数据源的入口、字段、覆盖范围、时间和状态，并把“真实、模型、用户输入、未接入”分开标注。点击“刷新真实数据”会尝试请求中央气象台与 Valhalla；断网时保留旧快照与旧时间，不伪造新时间。</p>
+
+    <h3>通用操作</h3>
+    <p><b>主题：</b>右上角拨片只有浅色/深色两态；深色主题下 3D 地图同样保持深色城市底图，避免浅色下的大面积白色。</p>
+    <p><b>2D / 3D：</b>地图左上角切换。3D 中左键拖动旋转、滚轮缩放、右键拖动平移；“重置”回到默认镜头；切页时自动释放其他页面的 3D 资源。3D 城市使用 OSM 真实建筑轮廓与道路，加入水面高光、跨江桥、树木、路灯、建筑窗灯和沿路车辆光点；没有高度标注的建筑按类型示意，不是实测测绘，也不使用高德/百度/谷歌等有版权限制的 3D 瓦片。</p>
+    <p><b>定位：</b>地图工具栏的定位按钮读取浏览器位置并标注“我的位置”；智慧出行页的定位会把最近地点设为起点。位置只在本机显示，不上传本项目服务器。</p>
+    <p><b>语音输入：</b>每个方向页的右上角都有“语音指令”按钮，可直接说该页面的操作，例如智慧交通“晚高峰，未来30分钟，看走廊”、智慧物流“起点南昌西站，生成方案”、轨道交通“2号线，南昌西站，安全”、智慧停车“500米，地下停车场”。智慧出行页另有对话式语音助手，可解析完整句子。所有地点下拉框和输入框右侧的麦克风仍可单独识别一个地名。</p>
+    <p><b>键盘：</b><span class="kbd">?</span> 打开/关闭帮助 · <span class="kbd">Esc</span> 关闭帮助 · <span class="kbd">1</span>–<span class="kbd">6</span> 切换左侧六个栏目。</p>
+
+    <h3>名词解释</h3>
+    <p><b>BPR：</b>Bureau of Public Roads 阻抗函数，用 <code>v = v₀ / (1 + 0.15p²)</code> 描述压力 p 上升时速度下降；本项目 p 为 0–1 的可解释压力指数。</p>
+    <p><b>走廊压力：</b>道路等级基准 × 时段曲线 × 地点吸引 × 天气因子的乘积，再映射为 0–100 的展示值；不是实测饱和度。</p>
+    <p><b>P10 / P50 / P90：</b>把需求上下浮动约 12% 后得到的情景区间，用于表达不确定性；不是统计置信区间。</p>
+    <p><b>Webster 配时：</b>用流量比 Y 估算最佳周期 <code>C₀=(1.5L+5)/(1−Y)</code>，再按各相位关键流量比分配绿灯。绿信比是某相位绿灯时间占周期的比例。</p>
+    <p><b>节约算法 / 2-opt：</b>Clarke-Wright 节约算法把两条单独配送路线合并以缩短总里程；2-opt 通过交换站点顺序继续优化。两者都基于真实路网距离矩阵。</p>
+    <p><b>首末班 / 计划推算：</b>首末班来自南昌轨道交通集团官方时刻；行车间隔取公开运行图值，下一班与到站时间是推算，不是实时列车位置。</p>
+    <p><b>缓冲：</b>在预计行程时间外预留的余量，包含天气、换乘和偏好；最晚出发 = 到达时限 − 行程时间 − 缓冲。</p>
+    <p><b>OSM / ODbL：</b>OpenStreetMap 是开放地图数据，ODbL 是其开放数据库许可；本项目道路、建筑、POI、停车场来自 OSM。</p>
+    <p><b>Valhalla：</b>开源路径规划服务；本地缓存了部分起终点的真实步行/骑行/驾车路径。没有缓存时会用 OSM 路网 A* 或直线估算，并在界面标注。</p>
+    <p><b>计划班次：</b>官方首末班 + 运行间隔推得的班次；不等同实时到站。公交仅使用 OSM 线路走向，站级时刻与班次未接入。</p>
+
+    <h3>数据边界与常见问题</h3>
+    <p><b>为什么路况不是实时？</b>没有商业地图实时路况接口授权；作品用真实路网、官方天气和透明模型做情景推演，并持续标注“模型推演”。</p>
+    <p><b>为什么地铁时间与官方不完全一致？</b>首末班是官方时刻；站间运行时间没有公开到秒的运行图，按站距与停站时间估算并标注。</p>
+    <p><b>公交为什么没有到站时间？</b>OSM 只有线路走向，没有站级时刻与实时车辆；组合方案中的公交段是估算，界面明确标注“非实时公交”。</p>
+    <p><b>断网还能用吗？</b>能。页面读取本地真实数据快照；刷新失败会保留旧数据与旧时间。新增地铁站之间的步行/骑行若没有缓存，会退回 OSM 路网 A* 估算或直线估算，并在方案说明中标注。</p>
+    <p><b>如何导出？</b>路况页可导出 CSV；出行页可导出当前方案 JSON；物流页可导出方案 CSV/JSON；停车预约意向可导出 JSON。</p>
+
+    <h3>限制</h3>
+    <ul>
+      <li>不是交通控制系统，不接入真实信号灯。</li>
+      <li>不提供实时路况、实时公交、共享单车、网约车、实时停车余位，也不连接真实订单或仓库系统。</li>
+      <li>物流任务与库存是用户输入；停车预约是本地意向，不构成真实占位。</li>
+      <li>轨道班次是官方首末班 + 运行间隔的计划推算，不是实时列车位置。</li>
+      <li>3D 建筑高度只有少量来自 OSM 标注，其余按类型/层数示意，不是实测测绘。</li>
+      <li>模型结果用于情景比较，不替代现场判断与运营调度。</li>
+    </ul>
+    <p style="margin-top:18px;color:var(--text-muted);font-size:11px">版本 <span id="helpVersion">1.1.0</span> · 数据快照 <span id="helpDataTime">—</span></p>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.js" } }
+</script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

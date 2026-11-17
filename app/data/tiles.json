@@ -1,0 +1,215 @@
+{
+ "provider": "OpenStreetMap France tiles + Esri World Imagery",
+ "sources": [
+  {
+   "name": "OpenStreetMap France",
+   "url": "https://a.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",
+   "data": "© OpenStreetMap contributors, ODbL 1.0"
+  },
+  {
+   "name": "Esri World Imagery",
+   "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+   "data": "Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+  }
+ ],
+ "fetched_at": "2026-11-14T16:31:03+08:00",
+ "regions": [
+  {
+   "name": "wide10",
+   "provider": "osm",
+   "zoom": 10,
+   "x": [
+    841,
+    842
+   ],
+   "y": [
+    426,
+    427
+   ],
+   "count": 4
+  },
+  {
+   "name": "wide11",
+   "provider": "osm",
+   "zoom": 11,
+   "x": [
+    1682,
+    1684
+   ],
+   "y": [
+    852,
+    854
+   ],
+   "count": 9
+  },
+  {
+   "name": "overview",
+   "provider": "osm",
+   "zoom": 12,
+   "x": [
+    3364,
+    3368
+   ],
+   "y": [
+    1704,
+    1709
+   ],
+   "count": 30
+  },
+  {
+   "name": "city",
+   "provider": "osm",
+   "zoom": 13,
+   "x": [
+    6728,
+    6737
+   ],
+   "y": [
+    3408,
+    3419
+   ],
+   "count": 120
+  },
+  {
+   "name": "core",
+   "provider": "osm",
+   "zoom": 14,
+   "x": [
+    13459,
+    13471
+   ],
+   "y": [
+    6820,
+    6835
+   ],
+   "count": 208
+  },
+  {
+   "name": "campus",
+   "provider": "osm",
+   "zoom": 15,
+   "x": [
+    26928,
+    26932
+   ],
+   "y": [
+    13648,
+    13651
+   ],
+   "count": 20
+  },
+  {
+   "name": "core15",
+   "provider": "osm",
+   "zoom": 15,
+   "x": [
+    26923,
+    26936
+   ],
+   "y": [
+    13646,
+    13662
+   ],
+   "count": 238
+  },
+  {
+   "name": "west15",
+   "provider": "osm",
+   "zoom": 15,
+   "x": [
+    26918,
+    26933
+   ],
+   "y": [
+    13657,
+    13668
+   ],
+   "count": 192
+  },
+  {
+   "name": "sat12",
+   "provider": "sat",
+   "zoom": 12,
+   "x": [
+    3364,
+    3368
+   ],
+   "y": [
+    1704,
+    1709
+   ],
+   "count": 30
+  },
+  {
+   "name": "sat13",
+   "provider": "sat",
+   "zoom": 13,
+   "x": [
+    6728,
+    6737
+   ],
+   "y": [
+    3408,
+    3419
+   ],
+   "count": 120
+  },
+  {
+   "name": "sat14",
+   "provider": "sat",
+   "zoom": 14,
+   "x": [
+    13459,
+    13471
+   ],
+   "y": [
+    6820,
+    6835
+   ],
+   "count": 208
+  }
+ ],
+ "tile_count": 1179,
+ "downloaded_now": 126,
+ "stitched": {
+  "path": "app/tiles/overview_z13.jpg",
+  "width": 2560,
+  "height": 3072,
+  "zoom": 13,
+  "x": [
+   6728,
+   6737
+  ],
+  "y": [
+   3408,
+   3419
+  ],
+  "bounds": [
+   115.6640625,
+   28.459033019728054,
+   116.103515625,
+   28.9216312824213
+  ]
+ },
+ "stitchedSatellite": {
+  "path": "app/tiles/satellite_z13.jpg",
+  "width": 2560,
+  "height": 3072,
+  "zoom": 13,
+  "x": [
+   6728,
+   6737
+  ],
+  "y": [
+   3408,
+   3419
+  ],
+  "bounds": [
+   115.6640625,
+   28.459033019728054,
+   116.103515625,
+   28.9216312824213
+  ]
+ },
+ "usage_note": "仅缓存演示所需有限瓦片；界面保留 OSM 与 Esri 署名。"
+}

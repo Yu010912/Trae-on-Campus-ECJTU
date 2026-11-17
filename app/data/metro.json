@@ -1,0 +1,2085 @@
+{
+ "source": "南昌轨道交通集团官方线网图与1/2/3号线首末时刻表；4号线站序来自官方线网图",
+ "source_urls": [
+  "https://www.ncmtr.com/yyfw_1.html"
+ ],
+ "checked_at": "2026-11-14",
+ "service": {
+  "weekday": "06:00–22:30",
+  "weekend": "06:00–23:00",
+  "note": "周一至周四 06:00–22:30；周五、周末及节假日 06:00–23:00（官方线网图）。1/2/3号线逐站首末班来自官方时刻表；4号线按线网运营时间校验。"
+ },
+ "run_time_model": "站间运行时间按站距/35km/h + 每站停站0.5分钟估算，非官方运行图",
+ "lines": [
+  {
+   "id": "L1",
+   "name": "1号线",
+   "color": "#D7192D",
+   "directionA": "昌北机场",
+   "directionB": "麻丘",
+   "serviceMode": "station",
+   "serviceNote": "",
+   "service": {
+    "first": "06:00",
+    "lastWeekday": "22:30",
+    "lastWeekend": "23:00"
+   },
+   "stations": [
+    {
+     "name": "昌北机场",
+     "coord": [
+      115.913325,
+      28.858653
+     ],
+     "firstToA": null,
+     "firstToB": "06:00",
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": "22:30",
+     "lastWeekendToA": null,
+     "lastWeekendToB": "23:00"
+    },
+    {
+     "name": "汇贤大道",
+     "coord": [
+      115.877145,
+      28.809687
+     ],
+     "firstToA": "06:17",
+     "firstToB": "06:06",
+     "lastWeekdayToA": "23:47",
+     "lastWeekdayToB": "22:36",
+     "lastWeekendToA": "次日00:17",
+     "lastWeekendToB": "23:06"
+    },
+    {
+     "name": "建业大道",
+     "coord": [
+      115.875621,
+      28.796276
+     ],
+     "firstToA": "06:15",
+     "firstToB": "06:08",
+     "lastWeekdayToA": "23:44",
+     "lastWeekdayToB": "22:38",
+     "lastWeekendToA": "次日00:14",
+     "lastWeekendToB": "23:08"
+    },
+    {
+     "name": "定子山",
+     "coord": [
+      115.869829,
+      28.775391
+     ],
+     "firstToA": "06:10",
+     "firstToB": "06:12",
+     "lastWeekdayToA": "23:40",
+     "lastWeekdayToB": "22:42",
+     "lastWeekendToA": "次日00:10",
+     "lastWeekendToB": "23:12"
+    },
+    {
+     "name": "冠山",
+     "coord": [
+      115.856654,
+      28.775777
+     ],
+     "firstToA": "06:08",
+     "firstToB": "06:15",
+     "lastWeekdayToA": "23:38",
+     "lastWeekdayToB": "22:45",
+     "lastWeekendToA": "次日00:08",
+     "lastWeekendToB": "23:15"
+    },
+    {
+     "name": "南齿",
+     "coord": [
+      115.846456,
+      28.768338
+     ],
+     "firstToA": "06:05",
+     "firstToB": "06:17",
+     "lastWeekdayToA": "23:35",
+     "lastWeekdayToB": "22:47",
+     "lastWeekendToA": "次日00:05",
+     "lastWeekendToB": "23:17"
+    },
+    {
+     "name": "方志敏大道",
+     "coord": [
+      115.850543,
+      28.762324
+     ],
+     "firstToA": "06:03",
+     "firstToB": "06:19",
+     "lastWeekdayToA": "23:33",
+     "lastWeekdayToB": "22:49",
+     "lastWeekendToA": "次日00:03",
+     "lastWeekendToB": "23:19"
+    },
+    {
+     "name": "蛟桥",
+     "coord": [
+      115.854065,
+      28.755083
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:21",
+     "lastWeekdayToA": "23:31",
+     "lastWeekdayToB": "22:51",
+     "lastWeekendToA": "次日00:01",
+     "lastWeekendToB": "23:21"
+    },
+    {
+     "name": "双港",
+     "coord": [
+      115.856102,
+      28.746984
+     ],
+     "firstToA": "06:00",
+     "firstToB": "06:00",
+     "lastWeekdayToA": "23:28",
+     "lastWeekdayToB": "22:53",
+     "lastWeekendToA": "23:58",
+     "lastWeekendToB": "23:23"
+    },
+    {
+     "name": "孔目湖",
+     "coord": [
+      115.85307,
+      28.736022
+     ],
+     "firstToA": "06:14",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "23:26",
+     "lastWeekdayToB": "22:56",
+     "lastWeekendToA": "23:56",
+     "lastWeekendToB": "23:26"
+    },
+    {
+     "name": "长江路",
+     "coord": [
+      115.874718,
+      28.720655
+     ],
+     "firstToA": "06:10",
+     "firstToB": "06:05",
+     "lastWeekdayToA": "23:22",
+     "lastWeekdayToB": "23:00",
+     "lastWeekendToA": "23:52",
+     "lastWeekendToB": "23:30"
+    },
+    {
+     "name": "珠江路",
+     "coord": [
+      115.871664,
+      28.711951
+     ],
+     "firstToA": "06:08",
+     "firstToB": "06:08",
+     "lastWeekdayToA": "23:19",
+     "lastWeekdayToB": "23:02",
+     "lastWeekendToA": "23:49",
+     "lastWeekendToB": "23:32"
+    },
+    {
+     "name": "庐山南大道",
+     "coord": [
+      115.860953,
+      28.704669
+     ],
+     "firstToA": "06:06",
+     "firstToB": "06:10",
+     "lastWeekdayToA": "23:17",
+     "lastWeekdayToB": "23:04",
+     "lastWeekendToA": "23:47",
+     "lastWeekendToB": "23:34"
+    },
+    {
+     "name": "绿茵路",
+     "coord": [
+      115.853005,
+      28.700874
+     ],
+     "firstToA": "06:04",
+     "firstToB": "06:12",
+     "lastWeekdayToA": "23:15",
+     "lastWeekdayToB": "23:06",
+     "lastWeekendToA": "23:45",
+     "lastWeekendToB": "23:36"
+    },
+    {
+     "name": "卫东",
+     "coord": [
+      115.844001,
+      28.694157
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:14",
+     "lastWeekdayToA": "23:13",
+     "lastWeekdayToB": "23:08",
+     "lastWeekendToA": "23:43",
+     "lastWeekendToB": "23:38"
+    },
+    {
+     "name": "地铁大厦",
+     "coord": [
+      115.847927,
+      28.68747
+     ],
+     "firstToA": "06:00",
+     "firstToB": "06:00",
+     "lastWeekdayToA": "23:10",
+     "lastWeekdayToB": "23:10",
+     "lastWeekendToA": "23:40",
+     "lastWeekendToB": "23:40"
+    },
+    {
+     "name": "秋水广场",
+     "coord": [
+      115.854773,
+      28.684522
+     ],
+     "firstToA": "06:14",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "23:08",
+     "lastWeekdayToB": "23:12",
+     "lastWeekendToA": "23:38",
+     "lastWeekendToB": "23:42"
+    },
+    {
+     "name": "滕王阁",
+     "coord": [
+      115.872898,
+      28.676714
+     ],
+     "firstToA": "06:11",
+     "firstToB": "06:04",
+     "lastWeekdayToA": "23:05",
+     "lastWeekdayToB": "23:15",
+     "lastWeekendToA": "23:35",
+     "lastWeekendToB": "23:45"
+    },
+    {
+     "name": "万寿宫",
+     "coord": [
+      115.880994,
+      28.678441
+     ],
+     "firstToA": "06:09",
+     "firstToB": "06:06",
+     "lastWeekdayToA": "23:03",
+     "lastWeekdayToB": "23:17",
+     "lastWeekendToA": "23:33",
+     "lastWeekendToB": "23:47"
+    },
+    {
+     "name": "八一馆",
+     "coord": [
+      115.886727,
+      28.679038
+     ],
+     "firstToA": "06:08",
+     "firstToB": "06:08",
+     "lastWeekdayToA": "23:01",
+     "lastWeekdayToB": "23:19",
+     "lastWeekendToA": "23:31",
+     "lastWeekendToB": "23:49"
+    },
+    {
+     "name": "八一广场",
+     "coord": [
+      115.898512,
+      28.678233
+     ],
+     "firstToA": "06:05",
+     "firstToB": "06:11",
+     "lastWeekdayToA": "22:59",
+     "lastWeekdayToB": "23:21",
+     "lastWeekendToA": "23:29",
+     "lastWeekendToB": "23:51"
+    },
+    {
+     "name": "丁公路北",
+     "coord": [
+      115.908694,
+      28.67724
+     ],
+     "firstToA": "06:03",
+     "firstToB": "06:13",
+     "lastWeekdayToA": "22:57",
+     "lastWeekdayToB": "23:24",
+     "lastWeekendToA": "23:27",
+     "lastWeekendToB": "23:54"
+    },
+    {
+     "name": "师大南路",
+     "coord": [
+      115.919185,
+      28.677429
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:15",
+     "lastWeekdayToA": "22:55",
+     "lastWeekdayToB": "23:26",
+     "lastWeekendToA": "23:25",
+     "lastWeekendToB": "23:56"
+    },
+    {
+     "name": "彭家桥",
+     "coord": [
+      115.927986,
+      28.677518
+     ],
+     "firstToA": "06:00",
+     "firstToB": "06:00",
+     "lastWeekdayToA": "22:53",
+     "lastWeekdayToB": "23:28",
+     "lastWeekendToA": "23:23",
+     "lastWeekendToB": "23:58"
+    },
+    {
+     "name": "谢家村",
+     "coord": [
+      115.935934,
+      28.677578
+     ],
+     "firstToA": "06:21",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "22:51",
+     "lastWeekdayToB": "23:30",
+     "lastWeekendToA": "23:21",
+     "lastWeekendToB": "次日00:00"
+    },
+    {
+     "name": "青山湖大道",
+     "coord": [
+      115.944155,
+      28.677636
+     ],
+     "firstToA": "06:19",
+     "firstToB": "06:03",
+     "lastWeekdayToA": "22:49",
+     "lastWeekdayToB": "23:32",
+     "lastWeekendToA": "23:19",
+     "lastWeekendToB": "次日00:02"
+    },
+    {
+     "name": "高新大道",
+     "coord": [
+      115.955605,
+      28.67768
+     ],
+     "firstToA": "06:17",
+     "firstToB": "06:05",
+     "lastWeekdayToA": "22:47",
+     "lastWeekdayToB": "23:34",
+     "lastWeekendToA": "23:17",
+     "lastWeekendToB": "次日00:04"
+    },
+    {
+     "name": "艾溪湖西",
+     "coord": [
+      115.969255,
+      28.678046
+     ],
+     "firstToA": "06:15",
+     "firstToB": "06:08",
+     "lastWeekdayToA": "22:45",
+     "lastWeekdayToB": "23:37",
+     "lastWeekendToA": "23:15",
+     "lastWeekendToB": "次日00:07"
+    },
+    {
+     "name": "艾溪湖东",
+     "coord": [
+      115.988521,
+      28.677887
+     ],
+     "firstToA": "06:12",
+     "firstToB": "06:11",
+     "lastWeekdayToA": "22:42",
+     "lastWeekdayToB": "23:40",
+     "lastWeekendToA": "23:12",
+     "lastWeekendToB": "次日00:10"
+    },
+    {
+     "name": "太子殿",
+     "coord": [
+      116.005915,
+      28.678055
+     ],
+     "firstToA": "06:09",
+     "firstToB": "06:13",
+     "lastWeekdayToA": "22:39",
+     "lastWeekdayToB": "23:43",
+     "lastWeekendToA": "23:09",
+     "lastWeekendToB": "次日00:13"
+    },
+    {
+     "name": "奥体中心",
+     "coord": [
+      116.019563,
+      28.677661
+     ],
+     "firstToA": "06:07",
+     "firstToB": "06:16",
+     "lastWeekdayToA": "22:37",
+     "lastWeekdayToB": "23:45",
+     "lastWeekendToA": "23:07",
+     "lastWeekendToB": "次日00:15"
+    },
+    {
+     "name": "瑶湖西",
+     "coord": [
+      116.033315,
+      28.67539
+     ],
+     "firstToA": "06:04",
+     "firstToB": "06:19",
+     "lastWeekdayToA": "22:34",
+     "lastWeekdayToB": "23:48",
+     "lastWeekendToA": "23:04",
+     "lastWeekendToB": "次日00:18"
+    },
+    {
+     "name": "瑶湖东",
+     "coord": [
+      116.0564261,
+      28.6693169
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:22",
+     "lastWeekdayToA": "22:31",
+     "lastWeekdayToB": "23:51",
+     "lastWeekendToA": "23:01",
+     "lastWeekendToB": "次日00:21"
+    },
+    {
+     "name": "麻丘",
+     "coord": [
+      116.0812584,
+      28.6716192
+     ],
+     "firstToA": "06:00",
+     "firstToB": null,
+     "lastWeekdayToA": "22:30",
+     "lastWeekdayToB": null,
+     "lastWeekendToA": "23:00",
+     "lastWeekendToB": null
+    }
+   ]
+  },
+  {
+   "id": "L2",
+   "name": "2号线",
+   "color": "#F2B705",
+   "directionA": "南路",
+   "directionB": "南昌东站",
+   "serviceMode": "station",
+   "serviceNote": "",
+   "service": {
+    "first": "06:00",
+    "lastWeekday": "22:30",
+    "lastWeekend": "23:00"
+   },
+   "stations": [
+    {
+     "name": "南路",
+     "coord": [
+      115.784327,
+      28.556066
+     ],
+     "firstToA": null,
+     "firstToB": "06:00",
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": "22:30",
+     "lastWeekendToA": null,
+     "lastWeekendToB": "23:00"
+    },
+    {
+     "name": "南昌中学",
+     "coord": [
+      115.784322,
+      28.563878
+     ],
+     "firstToA": "06:14",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "23:45",
+     "lastWeekdayToB": "22:31",
+     "lastWeekendToA": "次日00:15",
+     "lastWeekendToB": "23:01"
+    },
+    {
+     "name": "生米",
+     "coord": [
+      115.78591,
+      28.575185
+     ],
+     "firstToA": "06:11",
+     "firstToB": "06:03",
+     "lastWeekdayToA": "23:43",
+     "lastWeekdayToB": "22:33",
+     "lastWeekendToA": "次日00:13",
+     "lastWeekendToB": "23:03"
+    },
+    {
+     "name": "九龙湖南",
+     "coord": [
+      115.78841,
+      28.583245
+     ],
+     "firstToA": "06:10",
+     "firstToB": "06:05",
+     "lastWeekdayToA": "23:41",
+     "lastWeekdayToB": "22:35",
+     "lastWeekendToA": "次日00:11",
+     "lastWeekendToB": "23:05"
+    },
+    {
+     "name": "市民中心",
+     "coord": [
+      115.791141,
+      28.596678
+     ],
+     "firstToA": "06:07",
+     "firstToB": "06:07",
+     "lastWeekdayToA": "23:38",
+     "lastWeekdayToB": "22:37",
+     "lastWeekendToA": "次日00:08",
+     "lastWeekendToB": "23:07"
+    },
+    {
+     "name": "鹰潭街",
+     "coord": [
+      115.794024,
+      28.602385
+     ],
+     "firstToA": "06:05",
+     "firstToB": "06:09",
+     "lastWeekdayToA": "23:37",
+     "lastWeekdayToB": "22:39",
+     "lastWeekendToA": "次日00:07",
+     "lastWeekendToB": "23:09"
+    },
+    {
+     "name": "国博",
+     "coord": [
+      115.790421,
+      28.611564
+     ],
+     "firstToA": "06:03",
+     "firstToB": "06:11",
+     "lastWeekdayToA": "23:34",
+     "lastWeekdayToB": "22:41",
+     "lastWeekendToA": "次日00:04",
+     "lastWeekendToB": "23:11"
+    },
+    {
+     "name": "西站南广场",
+     "coord": [
+      115.785459,
+      28.621785
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:14",
+     "lastWeekdayToA": "23:32",
+     "lastWeekdayToB": "22:44",
+     "lastWeekendToA": "次日00:02",
+     "lastWeekendToB": "23:14"
+    },
+    {
+     "name": "南昌西站",
+     "coord": [
+      115.788192,
+      28.626645
+     ],
+     "firstToA": "06:00",
+     "firstToB": "06:00",
+     "lastWeekdayToA": "23:30",
+     "lastWeekdayToB": "22:46",
+     "lastWeekendToA": "00:00",
+     "lastWeekendToB": "23:16"
+    },
+    {
+     "name": "龙岗",
+     "coord": [
+      115.797776,
+      28.626616
+     ],
+     "firstToA": "06:15",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "23:28",
+     "lastWeekdayToB": "22:48",
+     "lastWeekendToA": "23:58",
+     "lastWeekendToB": "23:18"
+    },
+    {
+     "name": "国体中心",
+     "coord": [
+      115.811734,
+      28.625637
+     ],
+     "firstToA": "06:12",
+     "firstToB": "06:04",
+     "lastWeekdayToA": "23:25",
+     "lastWeekdayToB": "22:50",
+     "lastWeekendToA": "23:55",
+     "lastWeekendToB": "23:20"
+    },
+    {
+     "name": "卧龙山",
+     "coord": [
+      115.817329,
+      28.634908
+     ],
+     "firstToA": "06:10",
+     "firstToB": "06:06",
+     "lastWeekdayToA": "23:23",
+     "lastWeekdayToB": "22:53",
+     "lastWeekendToA": "23:53",
+     "lastWeekendToB": "23:23"
+    },
+    {
+     "name": "岭北",
+     "coord": [
+      115.825193,
+      28.644352
+     ],
+     "firstToA": "06:08",
+     "firstToB": "06:08",
+     "lastWeekdayToA": "23:21",
+     "lastWeekdayToB": "22:55",
+     "lastWeekendToA": "23:51",
+     "lastWeekendToB": "23:25"
+    },
+    {
+     "name": "前湖大道",
+     "coord": [
+      115.829973,
+      28.65518
+     ],
+     "firstToA": "06:06",
+     "firstToB": "06:11",
+     "lastWeekdayToA": "23:19",
+     "lastWeekdayToB": "22:57",
+     "lastWeekendToA": "23:49",
+     "lastWeekendToB": "23:27"
+    },
+    {
+     "name": "学府大道东",
+     "coord": [
+      115.834222,
+      28.662782
+     ],
+     "firstToA": "06:04",
+     "firstToB": "06:13",
+     "lastWeekdayToA": "23:17",
+     "lastWeekdayToB": "22:59",
+     "lastWeekendToA": "23:47",
+     "lastWeekendToB": "23:29"
+    },
+    {
+     "name": "翠苑路",
+     "coord": [
+      115.841724,
+      28.675898
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:16",
+     "lastWeekdayToA": "23:14",
+     "lastWeekdayToB": "23:01",
+     "lastWeekendToA": "23:44",
+     "lastWeekendToB": "23:31"
+    },
+    {
+     "name": "地铁大厦",
+     "coord": [
+      115.847927,
+      28.68747
+     ],
+     "firstToA": "06:00",
+     "firstToB": "06:00",
+     "lastWeekdayToA": "23:12",
+     "lastWeekdayToB": "23:04",
+     "lastWeekendToA": "23:42",
+     "lastWeekendToB": "23:34"
+    },
+    {
+     "name": "雅苑路",
+     "coord": [
+      115.852415,
+      28.695236
+     ],
+     "firstToA": "06:20",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "23:10",
+     "lastWeekdayToB": "23:06",
+     "lastWeekendToA": "23:40",
+     "lastWeekendToB": "23:36"
+    },
+    {
+     "name": "红谷中大道",
+     "coord": [
+      115.862058,
+      28.695091
+     ],
+     "firstToA": "06:18",
+     "firstToB": "06:03",
+     "lastWeekdayToA": "23:08",
+     "lastWeekdayToB": "23:08",
+     "lastWeekendToA": "23:38",
+     "lastWeekendToB": "23:38"
+    },
+    {
+     "name": "阳明公园",
+     "coord": [
+      115.886228,
+      28.691306
+     ],
+     "firstToA": "06:15",
+     "firstToB": "06:07",
+     "lastWeekdayToA": "23:04",
+     "lastWeekdayToB": "23:11",
+     "lastWeekendToA": "23:34",
+     "lastWeekendToB": "23:41"
+    },
+    {
+     "name": "青山路口",
+     "coord": [
+      115.896813,
+      28.69031
+     ],
+     "firstToA": "06:13",
+     "firstToB": "06:09",
+     "lastWeekdayToA": "23:02",
+     "lastWeekdayToB": "23:13",
+     "lastWeekendToA": "23:32",
+     "lastWeekendToB": "23:43"
+    },
+    {
+     "name": "福州路",
+     "coord": [
+      115.898402,
+      28.684376
+     ],
+     "firstToA": "06:11",
+     "firstToB": "06:11",
+     "lastWeekdayToA": "23:00",
+     "lastWeekdayToB": "23:15",
+     "lastWeekendToA": "23:30",
+     "lastWeekendToB": "23:45"
+    },
+    {
+     "name": "八一广场",
+     "coord": [
+      115.898512,
+      28.678233
+     ],
+     "firstToA": "06:09",
+     "firstToB": "06:13",
+     "lastWeekdayToA": "22:59",
+     "lastWeekdayToB": "23:17",
+     "lastWeekendToA": "23:29",
+     "lastWeekendToB": "23:47"
+    },
+    {
+     "name": "永叔路",
+     "coord": [
+      115.900156,
+      28.670525
+     ],
+     "firstToA": "06:07",
+     "firstToB": "06:15",
+     "lastWeekdayToA": "22:57",
+     "lastWeekdayToB": "23:19",
+     "lastWeekendToA": "23:27",
+     "lastWeekendToB": "23:49"
+    },
+    {
+     "name": "丁公路南",
+     "coord": [
+      115.906133,
+      28.667537
+     ],
+     "firstToA": "06:05",
+     "firstToB": "06:16",
+     "lastWeekdayToA": "22:55",
+     "lastWeekdayToB": "23:20",
+     "lastWeekendToA": "23:25",
+     "lastWeekendToB": "23:50"
+    },
+    {
+     "name": "南昌火车站",
+     "coord": [
+      115.91656,
+      28.666623
+     ],
+     "firstToA": "06:03",
+     "firstToB": "06:18",
+     "lastWeekdayToA": "22:53",
+     "lastWeekdayToB": "23:22",
+     "lastWeekendToA": "23:23",
+     "lastWeekendToB": "23:52"
+    },
+    {
+     "name": "顺外",
+     "coord": [
+      115.923396,
+      28.666907
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:20",
+     "lastWeekdayToA": "22:51",
+     "lastWeekdayToB": "23:24",
+     "lastWeekendToA": "23:21",
+     "lastWeekendToB": "23:54"
+    },
+    {
+     "name": "辛家庵",
+     "coord": [
+      115.934741,
+      28.662313
+     ],
+     "firstToA": "06:00",
+     "firstToB": "06:00",
+     "lastWeekdayToA": "22:49",
+     "lastWeekdayToB": "23:27",
+     "lastWeekendToA": "23:19",
+     "lastWeekendToB": "23:57"
+    },
+    {
+     "name": "楞上",
+     "coord": [
+      115.937871,
+      28.654155
+     ],
+     "firstToA": "06:16",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "22:46",
+     "lastWeekdayToB": "23:29",
+     "lastWeekendToA": "23:16",
+     "lastWeekendToB": "23:59"
+    },
+    {
+     "name": "北罗",
+     "coord": [
+      115.944747,
+      28.651067
+     ],
+     "firstToA": "06:14",
+     "firstToB": "06:03",
+     "lastWeekdayToA": "22:44",
+     "lastWeekdayToB": "23:31",
+     "lastWeekendToA": "23:14",
+     "lastWeekendToB": "次日00:01"
+    },
+    {
+     "name": "李巷",
+     "coord": [
+      115.952861,
+      28.647393
+     ],
+     "firstToA": "06:12",
+     "firstToB": "06:05",
+     "lastWeekdayToA": "22:42",
+     "lastWeekdayToB": "23:32",
+     "lastWeekendToA": "23:12",
+     "lastWeekendToB": "次日00:02"
+    },
+    {
+     "name": "沈桥",
+     "coord": [
+      115.968161,
+      28.643746
+     ],
+     "firstToA": "06:10",
+     "firstToB": "06:07",
+     "lastWeekdayToA": "22:40",
+     "lastWeekdayToB": "23:35",
+     "lastWeekendToA": "23:10",
+     "lastWeekendToB": "次日00:05"
+    },
+    {
+     "name": "观田",
+     "coord": [
+      115.975692,
+      28.64157
+     ],
+     "firstToA": "06:08",
+     "firstToB": "06:09",
+     "lastWeekdayToA": "22:38",
+     "lastWeekdayToB": "23:37",
+     "lastWeekendToA": "23:08",
+     "lastWeekendToB": "次日00:07"
+    },
+    {
+     "name": "罗家集",
+     "coord": [
+      115.984938,
+      28.636335
+     ],
+     "firstToA": "06:06",
+     "firstToB": "06:11",
+     "lastWeekdayToA": "22:36",
+     "lastWeekdayToB": "23:39",
+     "lastWeekendToA": "23:06",
+     "lastWeekendToB": "次日00:09"
+    },
+    {
+     "name": "枫下",
+     "coord": [
+      115.992225,
+      28.625738
+     ],
+     "firstToA": "06:04",
+     "firstToB": "06:14",
+     "lastWeekdayToA": "22:34",
+     "lastWeekdayToB": "23:42",
+     "lastWeekendToA": "23:04",
+     "lastWeekendToB": "次日00:12"
+    },
+    {
+     "name": "国展中心",
+     "coord": [
+      115.999934,
+      28.619542
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:16",
+     "lastWeekdayToA": "22:31",
+     "lastWeekdayToB": "23:44",
+     "lastWeekendToA": "23:01",
+     "lastWeekendToB": "次日00:14"
+    },
+    {
+     "name": "南昌东站",
+     "coord": [
+      116.013659,
+      28.617181
+     ],
+     "firstToA": "06:00",
+     "firstToB": null,
+     "lastWeekdayToA": "22:30",
+     "lastWeekdayToB": null,
+     "lastWeekendToA": "23:00",
+     "lastWeekendToB": null
+    }
+   ]
+  },
+  {
+   "id": "L3",
+   "name": "3号线",
+   "color": "#008FD0",
+   "directionA": "银三角北",
+   "directionB": "京东大道",
+   "serviceMode": "station",
+   "serviceNote": "",
+   "service": {
+    "first": "06:00",
+    "lastWeekday": "22:30",
+    "lastWeekend": "23:00"
+   },
+   "stations": [
+    {
+     "name": "银三角北",
+     "coord": [
+      115.9302235,
+      28.5242941
+     ],
+     "firstToA": null,
+     "firstToB": "06:00",
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": "22:30",
+     "lastWeekendToA": null,
+     "lastWeekendToB": "23:00"
+    },
+    {
+     "name": "斗门",
+     "coord": [
+      115.923129,
+      28.5321862
+     ],
+     "firstToA": "06:26",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "23:17",
+     "lastWeekdayToB": "22:31",
+     "lastWeekendToA": "23:47",
+     "lastWeekendToB": "23:01"
+    },
+    {
+     "name": "柏岗",
+     "coord": [
+      115.9134436,
+      28.5479096
+     ],
+     "firstToA": "06:23",
+     "firstToB": "06:04",
+     "lastWeekdayToA": "23:14",
+     "lastWeekdayToB": "22:34",
+     "lastWeekendToA": "23:44",
+     "lastWeekendToB": "23:04"
+    },
+    {
+     "name": "沥山",
+     "coord": [
+      115.911201,
+      28.559845
+     ],
+     "firstToA": "06:21",
+     "firstToB": "06:06",
+     "lastWeekdayToA": "23:12",
+     "lastWeekdayToB": "22:36",
+     "lastWeekendToA": "23:42",
+     "lastWeekendToB": "23:06"
+    },
+    {
+     "name": "复兴大道东",
+     "coord": [
+      115.907493,
+      28.579767
+     ],
+     "firstToA": "06:18",
+     "firstToB": "06:00",
+     "lastWeekdayToA": "23:09",
+     "lastWeekdayToB": "22:39",
+     "lastWeekendToA": "23:39",
+     "lastWeekendToB": "23:09"
+    },
+    {
+     "name": "邓埠",
+     "coord": [
+      115.905043,
+      28.593179
+     ],
+     "firstToA": "06:15",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "23:06",
+     "lastWeekdayToB": "22:42",
+     "lastWeekendToA": "23:36",
+     "lastWeekendToB": "23:11"
+    },
+    {
+     "name": "八大山人",
+     "coord": [
+      115.903611,
+      28.605284
+     ],
+     "firstToA": "06:13",
+     "firstToB": "06:04",
+     "lastWeekdayToA": "23:04",
+     "lastWeekdayToB": "22:44",
+     "lastWeekendToA": "23:34",
+     "lastWeekendToB": "23:14"
+    },
+    {
+     "name": "施尧",
+     "coord": [
+      115.903012,
+      28.61864
+     ],
+     "firstToA": "06:11",
+     "firstToB": "06:06",
+     "lastWeekdayToA": "23:01",
+     "lastWeekdayToB": "22:47",
+     "lastWeekendToA": "23:32",
+     "lastWeekendToB": "23:16"
+    },
+    {
+     "name": "江铃",
+     "coord": [
+      115.902452,
+      28.628155
+     ],
+     "firstToA": "06:09",
+     "firstToB": "06:08",
+     "lastWeekdayToA": "22:59",
+     "lastWeekdayToB": "22:49",
+     "lastWeekendToA": "23:30",
+     "lastWeekendToB": "23:18"
+    },
+    {
+     "name": "京家山",
+     "coord": [
+      115.901674,
+      28.642648
+     ],
+     "firstToA": "06:06",
+     "firstToB": "06:10",
+     "lastWeekdayToA": "22:57",
+     "lastWeekdayToB": "22:51",
+     "lastWeekendToA": "23:27",
+     "lastWeekendToB": "23:20"
+    },
+    {
+     "name": "十字街",
+     "coord": [
+      115.901406,
+      28.656691
+     ],
+     "firstToA": "06:04",
+     "firstToB": "06:00",
+     "lastWeekdayToA": "22:54",
+     "lastWeekdayToB": "22:54",
+     "lastWeekendToA": "23:24",
+     "lastWeekendToB": "23:23"
+    },
+    {
+     "name": "绳金塔",
+     "coord": [
+      115.897248,
+      28.661492
+     ],
+     "firstToA": "06:02",
+     "firstToB": "06:01",
+     "lastWeekdayToA": "22:52",
+     "lastWeekdayToB": "22:56",
+     "lastWeekendToA": "23:22",
+     "lastWeekendToB": "23:25"
+    },
+    {
+     "name": "六眼井",
+     "coord": [
+      115.889314,
+      28.672469
+     ],
+     "firstToA": "06:00",
+     "firstToB": "06:04",
+     "lastWeekdayToA": "22:50",
+     "lastWeekdayToB": "22:58",
+     "lastWeekendToA": "23:19",
+     "lastWeekendToB": "23:28"
+    },
+    {
+     "name": "八一馆",
+     "coord": [
+      115.886727,
+      28.679038
+     ],
+     "firstToA": "06:06",
+     "firstToB": "06:06",
+     "lastWeekdayToA": "22:48",
+     "lastWeekdayToB": "23:00",
+     "lastWeekendToA": "23:17",
+     "lastWeekendToB": "23:30"
+    },
+    {
+     "name": "墩子塘",
+     "coord": [
+      115.889931,
+      28.688356
+     ],
+     "firstToA": "06:04",
+     "firstToB": "06:08",
+     "lastWeekdayToA": "22:45",
+     "lastWeekdayToB": "23:03",
+     "lastWeekendToA": "23:15",
+     "lastWeekendToB": "23:33"
+    },
+    {
+     "name": "青山路口",
+     "coord": [
+      115.896813,
+      28.69031
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:10",
+     "lastWeekdayToA": "22:43",
+     "lastWeekdayToB": "23:05",
+     "lastWeekendToA": "23:13",
+     "lastWeekendToB": "23:35"
+    },
+    {
+     "name": "上沙沟",
+     "coord": [
+      115.906609,
+      28.697832
+     ],
+     "firstToA": "06:00",
+     "firstToB": "06:13",
+     "lastWeekdayToA": "22:40",
+     "lastWeekdayToB": "23:07",
+     "lastWeekendToA": "23:10",
+     "lastWeekendToB": "23:38"
+    },
+    {
+     "name": "青山湖西",
+     "coord": [
+      115.918325,
+      28.69634
+     ],
+     "firstToA": "06:08",
+     "firstToB": "06:15",
+     "lastWeekdayToA": "22:38",
+     "lastWeekdayToB": "23:10",
+     "lastWeekendToA": "23:08",
+     "lastWeekendToB": "23:40"
+    },
+    {
+     "name": "国威路",
+     "coord": [
+      115.936999,
+      28.6905
+     ],
+     "firstToA": "06:05",
+     "firstToB": "06:18",
+     "lastWeekdayToA": "22:35",
+     "lastWeekdayToB": "23:13",
+     "lastWeekendToA": "23:05",
+     "lastWeekendToB": "23:43"
+    },
+    {
+     "name": "火炬广场",
+     "coord": [
+      115.944682,
+      28.691542
+     ],
+     "firstToA": "06:03",
+     "firstToB": "06:20",
+     "lastWeekdayToA": "22:33",
+     "lastWeekdayToB": "23:15",
+     "lastWeekendToA": "23:03",
+     "lastWeekendToB": "23:45"
+    },
+    {
+     "name": "梁万",
+     "coord": [
+      115.95572,
+      28.693554
+     ],
+     "firstToA": "06:01",
+     "firstToB": "06:22",
+     "lastWeekdayToA": "22:31",
+     "lastWeekdayToB": "23:17",
+     "lastWeekendToA": "23:01",
+     "lastWeekendToB": "23:47"
+    },
+    {
+     "name": "京东大道",
+     "coord": [
+      115.968035,
+      28.695793
+     ],
+     "firstToA": "06:00",
+     "firstToB": null,
+     "lastWeekdayToA": "22:30",
+     "lastWeekdayToB": null,
+     "lastWeekendToA": "23:00",
+     "lastWeekendToB": null
+    }
+   ]
+  },
+  {
+   "id": "L4",
+   "name": "4号线",
+   "color": "#00A650",
+   "directionA": "白马山",
+   "directionB": "鱼尾洲",
+   "serviceMode": "line",
+   "serviceNote": "4号线站级首末时刻表未读取；按官方线网运营时间 06:00–22:30（周五/周末/节假日 23:00）校验。",
+   "service": {
+    "first": "06:00",
+    "lastWeekday": "22:30",
+    "lastWeekend": "23:00"
+   },
+   "stations": [
+    {
+     "name": "白马山",
+     "coord": [
+      115.717312,
+      28.634082
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "裕丰街",
+     "coord": [
+      115.725308,
+      28.623942
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "璜溪",
+     "coord": [
+      115.734728,
+      28.623176
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "中堡",
+     "coord": [
+      115.748181,
+      28.626588
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "礼庄山",
+     "coord": [
+      115.766453,
+      28.628749
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "西站南广场",
+     "coord": [
+      115.785459,
+      28.621785
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "安丰",
+     "coord": [
+      115.804667,
+      28.613874
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "东新",
+     "coord": [
+      115.834452,
+      28.60121
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "丁家洲",
+     "coord": [
+      115.851694,
+      28.625882
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "云天路",
+     "coord": [
+      115.863136,
+      28.642778
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "观洲",
+     "coord": [
+      115.85834,
+      28.635713
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "灌婴路",
+     "coord": [
+      115.868101,
+      28.65164
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "南昌大桥东",
+     "coord": [
+      115.872513,
+      28.658725
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "桃苑",
+     "coord": [
+      115.884878,
+      28.663097
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "绳金塔",
+     "coord": [
+      115.897248,
+      28.661492
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "坛子口",
+     "coord": [
+      115.903895,
+      28.660579
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "丁公路南",
+     "coord": [
+      115.906133,
+      28.667537
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "丁公路北",
+     "coord": [
+      115.908694,
+      28.67724
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "人民公园",
+     "coord": [
+      115.907423,
+      28.687155
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "上沙沟",
+     "coord": [
+      115.906609,
+      28.697832
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "起凤路",
+     "coord": [
+      115.912239,
+      28.70576
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "七里",
+     "coord": [
+      115.9231,
+      28.712949
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "民园路西",
+     "coord": [
+      115.942699,
+      28.721629
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "北沥",
+     "coord": [
+      115.96764,
+      28.718645
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "火炬",
+     "coord": [
+      115.954575,
+      28.719916
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "科技城",
+     "coord": [
+      115.977473,
+      28.718607
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    },
+    {
+     "name": "鱼尾洲",
+     "coord": [
+      115.995154,
+      28.71314
+     ],
+     "firstToA": null,
+     "firstToB": null,
+     "lastWeekdayToA": null,
+     "lastWeekdayToB": null,
+     "lastWeekendToA": null,
+     "lastWeekendToB": null
+    }
+   ]
+  }
+ ],
+ "stationLines": {
+  "昌北机场": [
+   "L1"
+  ],
+  "汇贤大道": [
+   "L1"
+  ],
+  "建业大道": [
+   "L1"
+  ],
+  "定子山": [
+   "L1"
+  ],
+  "冠山": [
+   "L1"
+  ],
+  "南齿": [
+   "L1"
+  ],
+  "方志敏大道": [
+   "L1"
+  ],
+  "蛟桥": [
+   "L1"
+  ],
+  "双港": [
+   "L1"
+  ],
+  "孔目湖": [
+   "L1"
+  ],
+  "长江路": [
+   "L1"
+  ],
+  "珠江路": [
+   "L1"
+  ],
+  "庐山南大道": [
+   "L1"
+  ],
+  "绿茵路": [
+   "L1"
+  ],
+  "卫东": [
+   "L1"
+  ],
+  "地铁大厦": [
+   "L1",
+   "L2"
+  ],
+  "秋水广场": [
+   "L1"
+  ],
+  "滕王阁": [
+   "L1"
+  ],
+  "万寿宫": [
+   "L1"
+  ],
+  "八一馆": [
+   "L1",
+   "L3"
+  ],
+  "八一广场": [
+   "L1",
+   "L2"
+  ],
+  "丁公路北": [
+   "L1",
+   "L4"
+  ],
+  "师大南路": [
+   "L1"
+  ],
+  "彭家桥": [
+   "L1"
+  ],
+  "谢家村": [
+   "L1"
+  ],
+  "青山湖大道": [
+   "L1"
+  ],
+  "高新大道": [
+   "L1"
+  ],
+  "艾溪湖西": [
+   "L1"
+  ],
+  "艾溪湖东": [
+   "L1"
+  ],
+  "太子殿": [
+   "L1"
+  ],
+  "奥体中心": [
+   "L1"
+  ],
+  "瑶湖西": [
+   "L1"
+  ],
+  "瑶湖东": [
+   "L1"
+  ],
+  "麻丘": [
+   "L1"
+  ],
+  "南路": [
+   "L2"
+  ],
+  "南昌中学": [
+   "L2"
+  ],
+  "生米": [
+   "L2"
+  ],
+  "九龙湖南": [
+   "L2"
+  ],
+  "市民中心": [
+   "L2"
+  ],
+  "鹰潭街": [
+   "L2"
+  ],
+  "国博": [
+   "L2"
+  ],
+  "西站南广场": [
+   "L2",
+   "L4"
+  ],
+  "南昌西站": [
+   "L2"
+  ],
+  "龙岗": [
+   "L2"
+  ],
+  "国体中心": [
+   "L2"
+  ],
+  "卧龙山": [
+   "L2"
+  ],
+  "岭北": [
+   "L2"
+  ],
+  "前湖大道": [
+   "L2"
+  ],
+  "学府大道东": [
+   "L2"
+  ],
+  "翠苑路": [
+   "L2"
+  ],
+  "雅苑路": [
+   "L2"
+  ],
+  "红谷中大道": [
+   "L2"
+  ],
+  "阳明公园": [
+   "L2"
+  ],
+  "青山路口": [
+   "L2",
+   "L3"
+  ],
+  "福州路": [
+   "L2"
+  ],
+  "永叔路": [
+   "L2"
+  ],
+  "丁公路南": [
+   "L2",
+   "L4"
+  ],
+  "南昌火车站": [
+   "L2"
+  ],
+  "顺外": [
+   "L2"
+  ],
+  "辛家庵": [
+   "L2"
+  ],
+  "楞上": [
+   "L2"
+  ],
+  "北罗": [
+   "L2"
+  ],
+  "李巷": [
+   "L2"
+  ],
+  "沈桥": [
+   "L2"
+  ],
+  "观田": [
+   "L2"
+  ],
+  "罗家集": [
+   "L2"
+  ],
+  "枫下": [
+   "L2"
+  ],
+  "国展中心": [
+   "L2"
+  ],
+  "南昌东站": [
+   "L2"
+  ],
+  "银三角北": [
+   "L3"
+  ],
+  "斗门": [
+   "L3"
+  ],
+  "柏岗": [
+   "L3"
+  ],
+  "沥山": [
+   "L3"
+  ],
+  "复兴大道东": [
+   "L3"
+  ],
+  "邓埠": [
+   "L3"
+  ],
+  "八大山人": [
+   "L3"
+  ],
+  "施尧": [
+   "L3"
+  ],
+  "江铃": [
+   "L3"
+  ],
+  "京家山": [
+   "L3"
+  ],
+  "十字街": [
+   "L3"
+  ],
+  "绳金塔": [
+   "L3",
+   "L4"
+  ],
+  "六眼井": [
+   "L3"
+  ],
+  "墩子塘": [
+   "L3"
+  ],
+  "上沙沟": [
+   "L3",
+   "L4"
+  ],
+  "青山湖西": [
+   "L3"
+  ],
+  "国威路": [
+   "L3"
+  ],
+  "火炬广场": [
+   "L3"
+  ],
+  "梁万": [
+   "L3"
+  ],
+  "京东大道": [
+   "L3"
+  ],
+  "白马山": [
+   "L4"
+  ],
+  "裕丰街": [
+   "L4"
+  ],
+  "璜溪": [
+   "L4"
+  ],
+  "中堡": [
+   "L4"
+  ],
+  "礼庄山": [
+   "L4"
+  ],
+  "安丰": [
+   "L4"
+  ],
+  "东新": [
+   "L4"
+  ],
+  "丁家洲": [
+   "L4"
+  ],
+  "云天路": [
+   "L4"
+  ],
+  "观洲": [
+   "L4"
+  ],
+  "灌婴路": [
+   "L4"
+  ],
+  "南昌大桥东": [
+   "L4"
+  ],
+  "桃苑": [
+   "L4"
+  ],
+  "坛子口": [
+   "L4"
+  ],
+  "人民公园": [
+   "L4"
+  ],
+  "起凤路": [
+   "L4"
+  ],
+  "七里": [
+   "L4"
+  ],
+  "民园路西": [
+   "L4"
+  ],
+  "北沥": [
+   "L4"
+  ],
+  "火炬": [
+   "L4"
+  ],
+  "科技城": [
+   "L4"
+  ],
+  "鱼尾洲": [
+   "L4"
+  ]
+ },
+ "transfers": [
+  {
+   "name": "地铁大厦",
+   "lines": [
+    "L1",
+    "L2"
+   ],
+   "coord": [
+    115.847927,
+    28.68747
+   ]
+  },
+  {
+   "name": "八一馆",
+   "lines": [
+    "L1",
+    "L3"
+   ],
+   "coord": [
+    115.886727,
+    28.679038
+   ]
+  },
+  {
+   "name": "八一广场",
+   "lines": [
+    "L1",
+    "L2"
+   ],
+   "coord": [
+    115.898512,
+    28.678233
+   ]
+  },
+  {
+   "name": "丁公路北",
+   "lines": [
+    "L1",
+    "L4"
+   ],
+   "coord": [
+    115.908694,
+    28.67724
+   ]
+  },
+  {
+   "name": "西站南广场",
+   "lines": [
+    "L2",
+    "L4"
+   ],
+   "coord": [
+    115.785459,
+    28.621785
+   ]
+  },
+  {
+   "name": "青山路口",
+   "lines": [
+    "L2",
+    "L3"
+   ],
+   "coord": [
+    115.896813,
+    28.69031
+   ]
+  },
+  {
+   "name": "丁公路南",
+   "lines": [
+    "L2",
+    "L4"
+   ],
+   "coord": [
+    115.906133,
+    28.667537
+   ]
+  },
+  {
+   "name": "绳金塔",
+   "lines": [
+    "L3",
+    "L4"
+   ],
+   "coord": [
+    115.897248,
+    28.661492
+   ]
+  },
+  {
+   "name": "上沙沟",
+   "lines": [
+    "L3",
+    "L4"
+   ],
+   "coord": [
+    115.906609,
+    28.697832
+   ]
+  }
+ ],
+ "coordSource": "OpenStreetMap subway station nodes (ODbL)"
+}
