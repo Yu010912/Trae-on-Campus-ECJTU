@@ -207,7 +207,7 @@ python app\start.py
 
 ## 八、说明与致谢
 
-- 本项目为 **Trae on Campus @ 华东交通大学**（2026 年 11 月 14 日）活动作品，由团队 **Token猛猛蹬** 使用 Trae 制作，公开开源，欢迎学习、交流与二次开发；转载或使用请保留项目来源与数据署名。
+- 本项目为 **Trae on Campus @ 华东交通大学**（2026 年 11 月 14 日）活动作品，由团队 **Token猛猛蹬** 使用 Trae 制作，代码以 MIT License 开源，欢迎学习、交流与二次开发；转载或使用请保留项目来源与数据署名（详见 LICENSE）。
 - 地图数据 © OpenStreetMap contributors，遵循 ODbL 1.0；瓦片来自 OSM France；2D 地图使用 Leaflet，3D 使用 Three.js，均已保留本地依赖与署名。
 - 线上版本为静态托管，页面与离线数据完整可用；「刷新真实数据 / 在线路径」依赖本地 Python 服务。
 - 感谢 Trae on Campus @ 华东交通大学 活动与 Trae 提供的支持。
